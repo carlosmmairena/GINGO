@@ -1,0 +1,27 @@
+                Detalles del proyecto programado 1 - Programación 2
+
+1. El juego se llamará GINGO.
+
+2. El cartón de cada jugador será una matriz de 8x10. Donde cada jugador seleccionar exactamente 10 números se deben diferenciar los seleccionados.
+
+3. Los números se sortean azar uno a uno al azar, hasta llegar a 10. Lo hace quien esté a cargo, osea, la banca y con $10000 apostados.
+
+4. Pueden jugar de 1 a 6 personas. Cualquiera cantidad de jugadores entre esos números.
+
+5. Cuando se elige un cartó para jugar, se empieza a colocar los datos del jugador o jugadora. La apuesta debe ser mínima $100. Esto se asigna al cartón.
+(Primero se asigna esto y luego elije los números del cartón)*
+
+6. Para acceder a los datos del cliente, se coloca un botón para mostrarlos.
+
+7. ¿Cómo hace para entrar a jugar?
+    
+    - Primero coloca $100 de la apuesta, y facilita sus datos personales.
+    - Segundo selecciona los 10 números de su cartón.
+    
+   - El premio es que en base de los $100 puede ganar o perder...-
+   - El jugador apuesta $5 por cada partida (vuelta).
+
+** Queda pendiente cómo funciona la apuesta de los $5.
+** Queda pendiente cómo funcionan las partidas con los mismos jugadores.
+--------------------------------------------
+

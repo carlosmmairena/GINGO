@@ -5,6 +5,7 @@ package vista;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Toolkit;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
@@ -18,6 +19,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     //private byte cartones[][][] = new byte[6][8][10];
     public FrmPrincipal() {
         initComponents();
+        setExtendedState(MAXIMIZED_BOTH);
         //Cartones carton1.matriz = triCart[0][][];
 
     }
@@ -89,6 +91,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnCambiar5 = new javax.swing.JButton();
         btnTblJug = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        btnNuevo = new javax.swing.JButton();
+        btnGenerar = new javax.swing.JButton();
+        btnAsignar = new javax.swing.JButton();
+        btnComenzar = new javax.swing.JButton();
+        btnNuevaBo = new javax.swing.JButton();
+        lblBolita = new javax.swing.JLabel();
+        txtNumBolita = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         lblNumJug = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
@@ -98,19 +107,22 @@ public class FrmPrincipal extends javax.swing.JFrame {
         tblResum = new javax.swing.JTable();
         jLabel13 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Casino Looky - Gingo");
         setMinimumSize(new java.awt.Dimension(1200, 850));
-        setPreferredSize(new java.awt.Dimension(1200, 850));
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
-        pnlBase.setBackground(new java.awt.Color(218, 246, 254));
+        pnlBase.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.darcula.selection.color1"));
         pnlBase.setMinimumSize(new java.awt.Dimension(1200, 850));
         pnlBase.setPreferredSize(new java.awt.Dimension(1200, 850));
         pnlBase.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlCart1.setBackground(new java.awt.Color(255, 255, 255));
+        pnlCart1.setBackground(new java.awt.Color(204, 204, 255));
         pnlCart1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         tblCart1.setModel(new javax.swing.table.DefaultTableModel(
@@ -146,22 +158,27 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblCart1);
 
+        lblnumCarton.setForeground(new java.awt.Color(102, 102, 102));
         lblnumCarton.setText("Cartón N°");
 
+        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Estado:");
 
         txtEstado.setEditable(false);
         txtEstado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        jButton1.setBackground(new java.awt.Color(204, 204, 255));
         jButton1.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jButton1.setText("Datos del jugador");
 
+        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Apuesta:");
 
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        btnCambiar.setBackground(new java.awt.Color(204, 204, 255));
         btnCambiar.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         btnCambiar.setText("Cambiar");
 
@@ -212,7 +229,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                             .addComponent(txtEstado))
                         .addGap(3, 3, 3)))
                 .addGap(9, 9, 9)
-                .addGroup(pnlCart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlCart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCambiar)
                     .addComponent(jButton1))
                 .addGap(71, 71, 71))
@@ -220,7 +237,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         pnlBase.add(pnlCart1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, 380, 320));
 
-        pnlCart2.setBackground(new java.awt.Color(255, 255, 255));
+        pnlCart2.setBackground(new java.awt.Color(204, 204, 255));
         pnlCart2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         tblCart2.setModel(new javax.swing.table.DefaultTableModel(
@@ -256,22 +273,27 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tblCart2);
 
+        lblnumCarton1.setForeground(new java.awt.Color(102, 102, 102));
         lblnumCarton1.setText("Cartón N°");
 
+        jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Estado:");
 
         txtEstado1.setEditable(false);
         txtEstado1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        jButton2.setBackground(new java.awt.Color(204, 204, 204));
         jButton2.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jButton2.setText("Datos del jugador");
 
+        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("Apuesta:");
 
         jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        btnCambiar1.setBackground(new java.awt.Color(204, 204, 255));
         btnCambiar1.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         btnCambiar1.setText("Cambiar");
 
@@ -322,7 +344,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                             .addComponent(txtEstado1))
                         .addGap(3, 3, 3)))
                 .addGap(9, 9, 9)
-                .addGroup(pnlCart2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlCart2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCambiar1)
                     .addComponent(jButton2))
                 .addGap(71, 71, 71))
@@ -330,7 +352,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         pnlBase.add(pnlCart2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, -1, 320));
 
-        pnlCart3.setBackground(new java.awt.Color(255, 255, 255));
+        pnlCart3.setBackground(new java.awt.Color(204, 204, 255));
         pnlCart3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         tblCart3.setModel(new javax.swing.table.DefaultTableModel(
@@ -366,22 +388,27 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(tblCart3);
 
+        lblnumCarton2.setForeground(new java.awt.Color(102, 102, 102));
         lblnumCarton2.setText("Cartón N°");
 
+        jLabel5.setForeground(new java.awt.Color(102, 102, 102));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Estado:");
 
         txtEstado2.setEditable(false);
         txtEstado2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        jButton3.setBackground(new java.awt.Color(204, 204, 255));
         jButton3.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jButton3.setText("Datos del jugador");
 
+        jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("Apuesta:");
 
         jTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        btnCambiar2.setBackground(new java.awt.Color(204, 204, 255));
         btnCambiar2.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         btnCambiar2.setText("Cambiar");
 
@@ -432,7 +459,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                             .addComponent(txtEstado2))
                         .addGap(3, 3, 3)))
                 .addGap(9, 9, 9)
-                .addGroup(pnlCart3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlCart3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCambiar2)
                     .addComponent(jButton3))
                 .addGap(71, 71, 71))
@@ -440,7 +467,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         pnlBase.add(pnlCart3, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 100, -1, 320));
 
-        pnlCart4.setBackground(new java.awt.Color(255, 255, 255));
+        pnlCart4.setBackground(new java.awt.Color(204, 204, 255));
         pnlCart4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         tblCart4.setModel(new javax.swing.table.DefaultTableModel(
@@ -476,22 +503,27 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(tblCart4);
 
+        lblnumCarton3.setForeground(new java.awt.Color(102, 102, 102));
         lblnumCarton3.setText("Cartón N°");
 
+        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText("Estado:");
 
         txtEstado3.setEditable(false);
         txtEstado3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        jButton4.setBackground(new java.awt.Color(204, 204, 255));
         jButton4.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jButton4.setText("Datos del jugador");
 
+        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText("Apuesta:");
 
         jTextField4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        btnCambiar3.setBackground(new java.awt.Color(204, 204, 255));
         btnCambiar3.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         btnCambiar3.setText("Cambiar");
 
@@ -542,7 +574,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                             .addComponent(txtEstado3))
                         .addGap(3, 3, 3)))
                 .addGap(9, 9, 9)
-                .addGroup(pnlCart4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlCart4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCambiar3)
                     .addComponent(jButton4))
                 .addGap(71, 71, 71))
@@ -550,7 +582,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         pnlBase.add(pnlCart4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 380, 320));
 
-        pnlCart5.setBackground(new java.awt.Color(255, 255, 255));
+        pnlCart5.setBackground(new java.awt.Color(204, 204, 255));
         pnlCart5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         tblCart5.setModel(new javax.swing.table.DefaultTableModel(
@@ -586,22 +618,27 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jScrollPane5.setViewportView(tblCart5);
 
+        lblnumCarton4.setForeground(new java.awt.Color(102, 102, 102));
         lblnumCarton4.setText("Cartón N°");
 
+        jLabel9.setForeground(new java.awt.Color(102, 102, 102));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel9.setText("Estado:");
 
         txtEstado4.setEditable(false);
         txtEstado4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        jButton5.setBackground(new java.awt.Color(204, 204, 255));
         jButton5.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jButton5.setText("Datos del jugador");
 
+        jLabel10.setForeground(new java.awt.Color(102, 102, 102));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel10.setText("Apuesta:");
 
         jTextField5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        btnCambiar4.setBackground(new java.awt.Color(204, 204, 255));
         btnCambiar4.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         btnCambiar4.setText("Cambiar");
 
@@ -652,7 +689,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                             .addComponent(txtEstado4))
                         .addGap(3, 3, 3)))
                 .addGap(9, 9, 9)
-                .addGroup(pnlCart5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlCart5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCambiar4)
                     .addComponent(jButton5))
                 .addGap(71, 71, 71))
@@ -660,7 +697,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         pnlBase.add(pnlCart5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 430, -1, 320));
 
-        pnlCart6.setBackground(new java.awt.Color(255, 255, 255));
+        pnlCart6.setBackground(new java.awt.Color(204, 204, 255));
         pnlCart6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         tblCart6.setModel(new javax.swing.table.DefaultTableModel(
@@ -696,22 +733,27 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jScrollPane6.setViewportView(tblCart6);
 
+        lblnumCarton5.setForeground(new java.awt.Color(102, 102, 102));
         lblnumCarton5.setText("Cartón N°");
 
+        jLabel11.setForeground(new java.awt.Color(102, 102, 102));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel11.setText("Estado:");
 
         txtEstado5.setEditable(false);
         txtEstado5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        jButton6.setBackground(new java.awt.Color(204, 204, 255));
         jButton6.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jButton6.setText("Datos del jugador");
 
+        jLabel12.setForeground(new java.awt.Color(102, 102, 102));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel12.setText("Apuesta:");
 
         jTextField6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        btnCambiar5.setBackground(new java.awt.Color(204, 204, 255));
         btnCambiar5.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         btnCambiar5.setText("Cambiar");
 
@@ -762,7 +804,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                             .addComponent(txtEstado5))
                         .addGap(3, 3, 3)))
                 .addGap(9, 9, 9)
-                .addGroup(pnlCart6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlCart6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCambiar5)
                     .addComponent(jButton6))
                 .addGap(71, 71, 71))
@@ -770,28 +812,83 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         pnlBase.add(pnlCart6, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 430, -1, 320));
 
+        btnTblJug.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.darcula.selection.color1"));
         btnTblJug.setText("Tabla de Jugadores");
         pnlBase.add(btnTblJug, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 780, 260, 50));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
+        btnNuevo.setBackground(new java.awt.Color(204, 204, 255));
+        btnNuevo.setText("Nuevo Juego");
+
+        btnGenerar.setBackground(new java.awt.Color(204, 204, 255));
+        btnGenerar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cartones.png"))); // NOI18N
+        btnGenerar.setText("Generar Cartones");
+
+        btnAsignar.setBackground(new java.awt.Color(204, 204, 255));
+        btnAsignar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/asignar.png"))); // NOI18N
+        btnAsignar.setText("Asignar Cartones");
+        btnAsignar.setMinimumSize(new java.awt.Dimension(167, 48));
+
+        btnComenzar.setBackground(new java.awt.Color(204, 204, 255));
+        btnComenzar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/comenzar.png"))); // NOI18N
+        btnComenzar.setText("Comenzar Juego");
+        btnComenzar.setMaximumSize(new java.awt.Dimension(77, 32));
+        btnComenzar.setMinimumSize(new java.awt.Dimension(167, 48));
+
+        btnNuevaBo.setBackground(new java.awt.Color(204, 204, 255));
+        btnNuevaBo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bolitas.png"))); // NOI18N
+        btnNuevaBo.setText("Nueva Bolita");
+        btnNuevaBo.setMaximumSize(new java.awt.Dimension(77, 32));
+        btnNuevaBo.setMinimumSize(new java.awt.Dimension(167, 48));
+
+        lblBolita.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblBolita.setForeground(new java.awt.Color(51, 51, 255));
+        lblBolita.setText("BOLITA N°");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1528, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(168, 168, 168)
+                .addComponent(btnNuevo)
+                .addGap(26, 26, 26)
+                .addComponent(btnGenerar)
+                .addGap(28, 28, 28)
+                .addComponent(btnAsignar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(btnComenzar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 297, Short.MAX_VALUE)
+                .addComponent(lblBolita)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtNumBolita, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53)
+                .addComponent(btnNuevaBo, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 88, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNuevo)
+                    .addComponent(btnGenerar)
+                    .addComponent(btnAsignar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnComenzar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNuevaBo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblBolita)
+                    .addComponent(txtNumBolita, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23))
         );
 
-        pnlBase.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 1530, 90));
+        pnlBase.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1540, 90));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
         jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
+        lblNumJug.setForeground(new java.awt.Color(102, 102, 102));
         lblNumJug.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNumJug.setText("Números Jugados");
 
@@ -827,6 +924,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jScrollPane7.setViewportView(tblNumJug);
 
+        lblNumJug1.setForeground(new java.awt.Color(102, 102, 102));
         lblNumJug1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNumJug1.setText("Resumen del juego");
 
@@ -863,6 +961,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jScrollPane8.setViewportView(tblResum);
 
         jLabel13.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(102, 102, 102));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setText("Total en Banca");
 
@@ -922,6 +1021,25 @@ public class FrmPrincipal extends javax.swing.JFrame {
         pnlBase.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 100, 350, 750));
 
         getContentPane().add(pnlBase);
+
+        jMenuBar1.setBackground(new java.awt.Color(204, 204, 255));
+
+        jMenu1.setBackground(new java.awt.Color(204, 204, 255));
+        jMenu1.setForeground(new java.awt.Color(0, 0, 0));
+        jMenu1.setText("archivo");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setBackground(new java.awt.Color(204, 204, 255));
+        jMenu2.setForeground(new java.awt.Color(0, 0, 0));
+        jMenu2.setText("Jugar Gingo");
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setBackground(new java.awt.Color(204, 204, 255));
+        jMenu3.setForeground(new java.awt.Color(0, 0, 0));
+        jMenu3.setText("Ayuda");
+        jMenuBar1.add(jMenu3);
+
+        setJMenuBar(jMenuBar1);
 
         pack();
         setLocationRelativeTo(null);
@@ -1032,12 +1150,17 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAsignar;
     private javax.swing.JButton btnCambiar;
     private javax.swing.JButton btnCambiar1;
     private javax.swing.JButton btnCambiar2;
     private javax.swing.JButton btnCambiar3;
     private javax.swing.JButton btnCambiar4;
     private javax.swing.JButton btnCambiar5;
+    private javax.swing.JButton btnComenzar;
+    private javax.swing.JButton btnGenerar;
+    private javax.swing.JButton btnNuevaBo;
+    private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnTblJug;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -1058,6 +1181,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -1075,6 +1202,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
+    private javax.swing.JLabel lblBolita;
     private javax.swing.JLabel lblNumJug;
     private javax.swing.JLabel lblNumJug1;
     private javax.swing.JLabel lblnumCarton;
@@ -1104,5 +1232,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField txtEstado3;
     private javax.swing.JTextField txtEstado4;
     private javax.swing.JTextField txtEstado5;
+    private javax.swing.JTextField txtNumBolita;
     // End of variables declaration//GEN-END:variables
 }

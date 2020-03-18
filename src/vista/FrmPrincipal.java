@@ -14,6 +14,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     //private byte cartones[][][] = new byte[6][8][10];
     public FrmPrincipal() {
         initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH);
         //Cartones carton1.matriz = triCart[0][][];
 
     }
@@ -110,12 +111,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Casino Looky - Gingo");
         setMinimumSize(new java.awt.Dimension(1200, 700));
-        setPreferredSize(new java.awt.Dimension(1274, 728));
+        setPreferredSize(new java.awt.Dimension(1274, 710));
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
         pnlBase.setBackground(new java.awt.Color(218, 246, 254));
-        pnlBase.setMinimumSize(new java.awt.Dimension(1200, 700));
-        pnlBase.setPreferredSize(new java.awt.Dimension(1274, 728));
+        pnlBase.setMinimumSize(new java.awt.Dimension(1200, 650));
+        pnlBase.setPreferredSize(new java.awt.Dimension(1274, 710));
         pnlBase.setRequestFocusEnabled(false);
         pnlBase.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -216,7 +217,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCart1Layout.createSequentialGroup()
                                 .addComponent(btnCambiar12)
                                 .addGap(9, 9, 9)))))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         pnlCart1Layout.setVerticalGroup(
             pnlCart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,11 +244,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addGap(17, 17, 17))
         );
 
-        pnlBase.add(pnlCart1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 300, 280));
+        pnlBase.add(pnlCart1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 300, 280));
 
         btnTblJug.setText("Tabla de Jugadores");
         btnTblJug.setEnabled(false);
-        pnlBase.add(btnTblJug, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 660, 200, 40));
+        pnlBase.add(btnTblJug, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 640, 210, 40));
 
         pnlEnca.setBackground(new java.awt.Color(255, 255, 255));
         pnlEnca.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -451,14 +452,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addComponent(lblNumJug1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
 
-        pnlBase.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 80, 310, 620));
+        pnlBase.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 70, 310, 610));
 
         pnlCart2.setBackground(new java.awt.Color(255, 255, 255));
         pnlCart2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -584,7 +585,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addGap(17, 17, 17))
         );
 
-        pnlBase.add(pnlCart2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, -1, 280));
+        pnlBase.add(pnlCart2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, -1, 280));
 
         pnlCart4.setBackground(new java.awt.Color(255, 255, 255));
         pnlCart4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -708,7 +709,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
-        pnlBase.add(pnlCart4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, -1, 280));
+        pnlBase.add(pnlCart4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, 280));
 
         pnlCart5.setBackground(new java.awt.Color(255, 255, 255));
         pnlCart5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -834,7 +835,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
-        pnlBase.add(pnlCart5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 370, -1, 280));
+        pnlBase.add(pnlCart5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, -1, 280));
 
         pnlCart3.setBackground(new java.awt.Color(255, 255, 255));
         pnlCart3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -960,7 +961,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addGap(17, 17, 17))
         );
 
-        pnlBase.add(pnlCart3, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 80, -1, 280));
+        pnlBase.add(pnlCart3, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 70, -1, 280));
 
         pnlCart6.setBackground(new java.awt.Color(255, 255, 255));
         pnlCart6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -1086,7 +1087,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addGap(17, 17, 17))
         );
 
-        pnlBase.add(pnlCart6, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 370, -1, 280));
+        pnlBase.add(pnlCart6, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 350, -1, 280));
 
         getContentPane().add(pnlBase);
 

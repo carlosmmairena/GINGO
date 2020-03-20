@@ -3,8 +3,10 @@
  */
 package vista;
 
+import java.util.ArrayList;
 import logica.Banca;
 import logica.Cartones;
+import logica.Jugador;
 
 /**
  *
@@ -14,19 +16,16 @@ import logica.Cartones;
 public class FrmPrincipal extends javax.swing.JFrame {
 
     private byte carTri[][][];
-    Cartones hilo1;
-    Cartones hilo2;
-    Cartones hilo3;
-    Cartones hilo4;
-    Cartones hilo5;
-    Cartones hilo6;
+    private Cartones hilos[];
     Banca banca;
+    ArrayList<Jugador> arregloJugad;
 
     public FrmPrincipal() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
         this.carTri = new byte[6][8][10];
-
+        this.hilos = new Cartones[6];
+        this.arregloJugad = new ArrayList();
     }
 
     @SuppressWarnings("unchecked")
@@ -281,6 +280,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         btnAsigCart.setText("Asignar Cartones");
         btnAsigCart.setEnabled(false);
+        btnAsigCart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAsigCartActionPerformed(evt);
+            }
+        });
 
         btnComenzar.setText("Comenzar Juego");
         btnComenzar.setEnabled(false);
@@ -309,7 +313,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addComponent(btnAsigCart, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnComenzar, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtBolita, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -333,7 +337,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        pnlBase.add(pnlEnca, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 1240, 70));
+        pnlBase.add(pnlEnca, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 1210, 70));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -477,7 +481,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        pnlBase.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 70, 310, 610));
+        pnlBase.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 70, 310, 610));
 
         pnlCart2.setBackground(new java.awt.Color(255, 255, 255));
         pnlCart2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -551,32 +555,32 @@ public class FrmPrincipal extends javax.swing.JFrame {
             .addGroup(pnlCart2Layout.createSequentialGroup()
                 .addGroup(pnlCart2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlCart2Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
                         .addGroup(pnlCart2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlCart2Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblnumCarton2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(pnlCart2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(pnlCart2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGap(19, 19, 19)
+                                .addComponent(lblnumCarton2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(pnlCart2Layout.createSequentialGroup()
-                                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtEstado2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnlCart2Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(btnDatos2)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlCart2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlCart2Layout.createSequentialGroup()
-                                .addComponent(lblApuesta2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtApuesta2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCart2Layout.createSequentialGroup()
-                                .addComponent(btnCambiar2)
-                                .addGap(9, 9, 9)))))
-                .addContainerGap(14, Short.MAX_VALUE))
+                                .addContainerGap()
+                                .addGroup(pnlCart2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlCart2Layout.createSequentialGroup()
+                                        .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtEstado2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(pnlCart2Layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(btnDatos2)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(pnlCart2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlCart2Layout.createSequentialGroup()
+                                        .addComponent(lblApuesta2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtApuesta2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCart2Layout.createSequentialGroup()
+                                        .addComponent(btnCambiar2)
+                                        .addGap(9, 9, 9)))))
+                        .addGap(0, 8, Short.MAX_VALUE))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
         pnlCart2Layout.setVerticalGroup(
             pnlCart2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -603,7 +607,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addGap(17, 17, 17))
         );
 
-        pnlBase.add(pnlCart2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, -1, 280));
+        pnlBase.add(pnlCart2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, -1, 280));
 
         pnlCart4.setBackground(new java.awt.Color(255, 255, 255));
         pnlCart4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -678,11 +682,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addGroup(pnlCart4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlCart4Layout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addGroup(pnlCart4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlCart4Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblnumCarton4, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblnumCarton4, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlCart4Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(pnlCart4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -701,6 +701,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                                 .addComponent(btnCambiar4)
                                 .addGap(8, 8, 8)))))
                 .addContainerGap(12, Short.MAX_VALUE))
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         pnlCart4Layout.setVerticalGroup(
             pnlCart4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -802,11 +803,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addGroup(pnlCart5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlCart5Layout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addGroup(pnlCart5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlCart5Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblnumCarton5, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblnumCarton5, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlCart5Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(pnlCart5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -827,6 +824,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                                 .addComponent(btnCambiar5)
                                 .addGap(9, 9, 9)))))
                 .addContainerGap(10, Short.MAX_VALUE))
+            .addComponent(jScrollPane9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         pnlCart5Layout.setVerticalGroup(
             pnlCart5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -853,7 +851,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
-        pnlBase.add(pnlCart5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, -1, 280));
+        pnlBase.add(pnlCart5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 350, -1, 280));
 
         pnlCart3.setBackground(new java.awt.Color(255, 255, 255));
         pnlCart3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -927,32 +925,32 @@ public class FrmPrincipal extends javax.swing.JFrame {
             .addGroup(pnlCart3Layout.createSequentialGroup()
                 .addGroup(pnlCart3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlCart3Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
                         .addGroup(pnlCart3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlCart3Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblnumCarton3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(pnlCart3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(pnlCart3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGap(19, 19, 19)
+                                .addComponent(lblnumCarton3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(pnlCart3Layout.createSequentialGroup()
-                                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtEstado3, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnlCart3Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(btnDatos3)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlCart3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlCart3Layout.createSequentialGroup()
-                                .addComponent(lblApuesta3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtApuesta3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCart3Layout.createSequentialGroup()
-                                .addComponent(btnCambiar3)
-                                .addGap(9, 9, 9)))))
-                .addContainerGap(12, Short.MAX_VALUE))
+                                .addContainerGap()
+                                .addGroup(pnlCart3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlCart3Layout.createSequentialGroup()
+                                        .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtEstado3, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(pnlCart3Layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(btnDatos3)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(pnlCart3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlCart3Layout.createSequentialGroup()
+                                        .addComponent(lblApuesta3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtApuesta3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCart3Layout.createSequentialGroup()
+                                        .addComponent(btnCambiar3)
+                                        .addGap(9, 9, 9)))))
+                        .addGap(0, 6, Short.MAX_VALUE))
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
         pnlCart3Layout.setVerticalGroup(
             pnlCart3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -979,7 +977,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addGap(17, 17, 17))
         );
 
-        pnlBase.add(pnlCart3, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 70, -1, 280));
+        pnlBase.add(pnlCart3, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 70, -1, 280));
 
         pnlCart6.setBackground(new java.awt.Color(255, 255, 255));
         pnlCart6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -1054,11 +1052,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addGroup(pnlCart6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlCart6Layout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addGroup(pnlCart6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlCart6Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblnumCarton6, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblnumCarton6, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlCart6Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(pnlCart6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1079,6 +1073,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                                 .addComponent(btnCambiar6)
                                 .addGap(9, 9, 9)))))
                 .addContainerGap(10, Short.MAX_VALUE))
+            .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         pnlCart6Layout.setVerticalGroup(
             pnlCart6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1105,7 +1100,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addGap(17, 17, 17))
         );
 
-        pnlBase.add(pnlCart6, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 350, -1, 280));
+        pnlBase.add(pnlCart6, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 350, -1, 280));
 
         getContentPane().add(pnlBase);
 
@@ -1164,6 +1159,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
         this.generarCartones();
 
     }//GEN-LAST:event_btnGenCartActionPerformed
+
+    private void btnAsigCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsigCartActionPerformed
+        
+        this.asignarCarton();
+        
+    }//GEN-LAST:event_btnAsigCartActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1289,18 +1290,87 @@ public class FrmPrincipal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     /**
+     * Se llama para asignar un cartón
+     */
+    private void asignarCarton(){
+        
+        DlgRegistro registrar = new DlgRegistro(this, true, cartonesDisponibles());
+        registrar.setVisible(true);
+        seleCarton(registrar.getCmbCarton().getSelectedItem().toString(),registrar.getJugador());
+        
+    }
+    
+    private void seleCarton(String r, Jugador j){
+        
+        switch(r){
+            case "Cartón N° 1":
+                j.setCarton(hilos[0]);
+                break;
+                
+            case "Cartón N° 2":
+                j.setCarton(hilos[1]);
+                break;
+                
+            case "Cartón N° 3":
+                j.setCarton(hilos[2]);
+                break;
+                
+            case "Cartón N° 4":
+                j.setCarton(hilos[3]);
+                break;
+                
+            case "Cartón N° 5":
+                j.setCarton(hilos[4]);
+                break;
+                
+            case "Cartón N° 6":
+                j.setCarton(hilos[5]);
+                break;
+        }
+        arregloJugad.add(j);
+        arregloJugad.trimToSize();
+    }
+    
+    /**
+     * Revisa los cartones disponibles y los retorna en un arreglo de string
+     * @return 
+     */
+    private ArrayList<String> cartonesDisponibles(){
+        
+        ArrayList<String> cartones = new ArrayList();    
+        for (int i = 0; i < hilos.length; i++) {
+            if(hilos[i].getEstado().equals("Disponible")){
+                cartones.add(hilos[i].getNumCarton()+"");
+            }
+        }
+        cartones.trimToSize();
+        return cartones;
+    }
+    
+    /**
      * Rellena los botones
      */
     private void generarCartones(){
-        hilo1.llenarCarton();
-        this.carTri[0] = hilo1.getMatriz();
+        
+        for (int i = 0; i < hilos.length; i++) {
+            hilos[i].llenarCarton();
+            this.carTri[i] = hilos[i].getMatriz();
+        }
         
         for (int fil = 0; fil < 8; fil++) {
             for (int col = 0; col < 10; col++) {
 
                 tblCart1.setValueAt(carTri[0][fil][col],fil,col);
+                tblCart2.setValueAt(carTri[1][fil][col],fil,col);
+                tblCart3.setValueAt(carTri[2][fil][col],fil,col);
+                tblCart4.setValueAt(carTri[3][fil][col],fil,col);
+                tblCart5.setValueAt(carTri[4][fil][col],fil,col);
+                tblCart6.setValueAt(carTri[5][fil][col],fil,col);
             }
         }
+        
+        this.btnGenCart.setEnabled(false);
+        this.btnAsigCart.setEnabled(true);
     }
     
     /**
@@ -1308,12 +1378,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
      */
     private void iniciarJuego() {
 
-        hilo1 = new Cartones(Byte.parseByte(String.valueOf(1)), carTri[0].clone());
-        hilo2 = new Cartones(Byte.parseByte(String.valueOf(2)), carTri[1].clone());
-        hilo3 = new Cartones(Byte.parseByte(String.valueOf(3)), carTri[2].clone());
-        hilo4 = new Cartones(Byte.parseByte(String.valueOf(4)), carTri[3].clone());
-        hilo5 = new Cartones(Byte.parseByte(String.valueOf(5)), carTri[4].clone());
-        hilo6 = new Cartones(Byte.parseByte(String.valueOf(6)), carTri[5].clone());
+        for (int i = 0; i < hilos.length; i++) {
+            hilos[i] = new Cartones(Byte.parseByte(String.valueOf(i)), carTri[0].clone());
+        }
+        
         banca = new Banca();
 
         this.llenarCampos();
@@ -1324,26 +1392,26 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void llenarCampos() {
 
-        lblnumCarton1.setText("Cartón N° " + hilo1.getNumCarton());
-        lblnumCarton2.setText("Cartón N° " + hilo2.getNumCarton());
-        lblnumCarton3.setText("Cartón N° " + hilo3.getNumCarton());
-        lblnumCarton4.setText("Cartón N° " + hilo4.getNumCarton());
-        lblnumCarton5.setText("Cartón N° " + hilo5.getNumCarton());
-        lblnumCarton6.setText("Cartón N° " + hilo6.getNumCarton());
+        lblnumCarton1.setText("Cartón N° " + hilos[0].getNumCarton());
+        lblnumCarton2.setText("Cartón N° " + hilos[1].getNumCarton());
+        lblnumCarton3.setText("Cartón N° " + hilos[2].getNumCarton());
+        lblnumCarton4.setText("Cartón N° " + hilos[3].getNumCarton());
+        lblnumCarton5.setText("Cartón N° " + hilos[4].getNumCarton());
+        lblnumCarton6.setText("Cartón N° " + hilos[5].getNumCarton());
 
-        txtEstado1.setText(hilo1.getEstado());
-        txtEstado2.setText(hilo2.getEstado());
-        txtEstado3.setText(hilo3.getEstado());
-        txtEstado4.setText(hilo4.getEstado());
-        txtEstado5.setText(hilo5.getEstado());
-        txtEstado6.setText(hilo6.getEstado());
+        txtEstado1.setText(hilos[0].getEstado());
+        txtEstado2.setText(hilos[1].getEstado());
+        txtEstado3.setText(hilos[2].getEstado());
+        txtEstado4.setText(hilos[3].getEstado());
+        txtEstado5.setText(hilos[4].getEstado());
+        txtEstado6.setText(hilos[5].getEstado());
 
-        txtApuesta1.setText("$" + hilo1.getApuesta());
-        txtApuesta2.setText("$" + hilo2.getApuesta());
-        txtApuesta3.setText("$" + hilo3.getApuesta());
-        txtApuesta4.setText("$" + hilo4.getApuesta());
-        txtApuesta5.setText("$" + hilo5.getApuesta());
-        txtApuesta6.setText("$" + hilo6.getApuesta());
+        txtApuesta1.setText("$" + hilos[0].getApuesta());
+        txtApuesta2.setText("$" + hilos[1].getApuesta());
+        txtApuesta3.setText("$" + hilos[2].getApuesta());
+        txtApuesta4.setText("$" + hilos[3].getApuesta());
+        txtApuesta5.setText("$" + hilos[4].getApuesta());
+        txtApuesta6.setText("$" + hilos[5].getApuesta());
 
         txtTotal.setText("$" + banca.getTotalBanca());
 

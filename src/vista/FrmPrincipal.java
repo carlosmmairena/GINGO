@@ -16,7 +16,7 @@ import logica.Jugador;
 public class FrmPrincipal extends javax.swing.JFrame {
 
     private byte carTri[][][];
-    private Cartones hilos[];
+    ArrayList<Cartones> hilos;
     Banca banca;
     ArrayList<Jugador> arregloJugad;
 
@@ -24,7 +24,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
         this.carTri = new byte[6][8][10];
-        this.hilos = new Cartones[6];
+        this.hilos = new ArrayList();
         this.arregloJugad = new ArrayList();
     }
 
@@ -1297,34 +1297,76 @@ public class FrmPrincipal extends javax.swing.JFrame {
         DlgRegistro registrar = new DlgRegistro(this, true, cartonesDisponibles());
         registrar.setVisible(true);
         seleCarton(registrar.getCmbCarton().getSelectedItem().toString(),registrar.getJugador());
-        
     }
     
     private void seleCarton(String r, Jugador j){
+        Cartones carton;
         
         switch(r){
             case "Cartón N° 1":
-                j.setCarton(hilos[0]);
+                carton = new Cartones("Vendido",Byte.parseByte("1"), carTri[0].clone());
+                this.hilos.add(carton);
+                this.hilos.trimToSize();
+                j.setCarton(carton);
+                
+                txtEstado1.setText(hilos.get(hilos.size()-1).getEstado());
+                btnCambiar1.setEnabled(true);
+                btnDatos1.setEnabled(true);
                 break;
                 
             case "Cartón N° 2":
-                j.setCarton(hilos[1]);
+                carton = new Cartones("Vendido",Byte.parseByte("2"), carTri[1].clone());
+                this.hilos.add(carton);
+                this.hilos.trimToSize();
+                j.setCarton(carton);
+                
+                txtEstado2.setText(hilos.get(hilos.size()-1).getEstado());
+                btnCambiar2.setEnabled(true);
+                btnDatos2.setEnabled(true);
                 break;
                 
             case "Cartón N° 3":
-                j.setCarton(hilos[2]);
+                carton = new Cartones("Vendido",Byte.parseByte("3"), carTri[2].clone());
+                this.hilos.add(carton);
+                this.hilos.trimToSize();
+                j.setCarton(carton);
+                
+                txtEstado3.setText(hilos.get(hilos.size()-1).getEstado());
+                btnCambiar3.setEnabled(true);
+                btnDatos3.setEnabled(true);
                 break;
                 
             case "Cartón N° 4":
-                j.setCarton(hilos[3]);
+                carton = new Cartones("Vendido",Byte.parseByte("4"), carTri[3].clone());
+                this.hilos.add(carton);
+                this.hilos.trimToSize();
+                j.setCarton(carton);
+                
+                txtEstado4.setText(hilos.get(hilos.size()-1).getEstado());
+                btnCambiar4.setEnabled(true);
+                btnDatos4.setEnabled(true);
                 break;
                 
             case "Cartón N° 5":
-                j.setCarton(hilos[4]);
+                carton = new Cartones("Vendido", Byte.parseByte("5"), carTri[4].clone());
+                this.hilos.add(carton);
+                this.hilos.trimToSize();
+                j.setCarton(carton);
+                
+                txtEstado5.setText(hilos.get(hilos.size()-1).getEstado());
+                btnCambiar5.setEnabled(true);
+                btnDatos5.setEnabled(true);
                 break;
                 
             case "Cartón N° 6":
-                j.setCarton(hilos[5]);
+                carton = new Cartones("Vendido",Byte.parseByte("6"), carTri[5].clone());
+                this.hilos.add(carton);
+                this.hilos.trimToSize();
+                j.setCarton(carton);
+                
+                txtEstado6.setText(hilos.get(hilos.size()-1).getEstado());
+                btnCambiar6.setEnabled(true);
+                btnDatos6.setEnabled(true);
                 break;
         }
         arregloJugad.add(j);
@@ -1337,10 +1379,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
      */
     private ArrayList<String> cartonesDisponibles(){
         
-        ArrayList<String> cartones = new ArrayList();    
-        for (int i = 0; i < hilos.length; i++) {
-            if(hilos[i].getEstado().equals("Disponible")){
-                cartones.add(hilos[i].getNumCarton()+"");
+        ArrayList<String> cartones = new ArrayList();
+        
+        for (int i = 0; i < hilos.size(); i++) {
+            if(hilos.get(i).getEstado().equals("Vendido")){
+                cartones.add("Cartón N° "+hilos.get(i).getNumCarton());
             }
         }
         cartones.trimToSize();
@@ -1348,18 +1391,29 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }
     
     /**
-     * Rellena los botones
+     * Rellena la matriz tridimensional
      */
     private void generarCartones(){
         
-        for (int i = 0; i < hilos.length; i++) {
-            hilos[i].llenarCarton();
-            this.carTri[i] = hilos[i].getMatriz();
+        byte num;
+        
+        for (int posi = 0; posi < 6; posi++) {
+            for (int fil = 0; fil < 8; fil++) {
+                for (int col = 0; col < 10; col++) {
+
+                    num = (byte) (Math.random() * 80 + 1);
+                    if (revisar(num, posi)) {
+                        col--;
+                    } else {
+                        carTri[posi][fil][col] = num;
+                    }
+                }
+            }
         }
         
+        // Asigna el valor de la matriz a cada cartón gráfico
         for (int fil = 0; fil < 8; fil++) {
             for (int col = 0; col < 10; col++) {
-
                 tblCart1.setValueAt(carTri[0][fil][col],fil,col);
                 tblCart2.setValueAt(carTri[1][fil][col],fil,col);
                 tblCart3.setValueAt(carTri[2][fil][col],fil,col);
@@ -1374,13 +1428,34 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }
     
     /**
+     * Revisa si un número está repetido
+     * @param num
+     * @return 
+     */
+    private boolean revisar(byte num, int posi) {
+
+        boolean aviso = false;
+            for (int fil = 0; fil < 8; fil++) {
+                for (int col = 0; col < 10; col++) {
+
+                    if (num == carTri[posi][fil][col]) {
+                        aviso = true;
+                        break;
+                    }
+                }
+            }
+        return aviso;
+    }
+    
+    /**
      * Método que inicializa los parámetros del juego
      */
     private void iniciarJuego() {
 
-        for (int i = 0; i < hilos.length; i++) {
-            hilos[i] = new Cartones(Byte.parseByte(String.valueOf(i)), carTri[0].clone());
-        }
+        
+//        for (int i = 0; i < hilos.length; i++) {
+//            hilos[i] = new Cartones(Byte.parseByte(String.valueOf(i)), carTri[0].clone());
+//        }
         
         banca = new Banca();
 
@@ -1392,26 +1467,26 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void llenarCampos() {
 
-        lblnumCarton1.setText("Cartón N° " + hilos[0].getNumCarton());
-        lblnumCarton2.setText("Cartón N° " + hilos[1].getNumCarton());
-        lblnumCarton3.setText("Cartón N° " + hilos[2].getNumCarton());
-        lblnumCarton4.setText("Cartón N° " + hilos[3].getNumCarton());
-        lblnumCarton5.setText("Cartón N° " + hilos[4].getNumCarton());
-        lblnumCarton6.setText("Cartón N° " + hilos[5].getNumCarton());
+        lblnumCarton1.setText("Cartón N° 1");
+        lblnumCarton2.setText("Cartón N° 2" );
+        lblnumCarton3.setText("Cartón N° 3" );
+        lblnumCarton4.setText("Cartón N° 4" );
+        lblnumCarton5.setText("Cartón N° 5" );
+        lblnumCarton6.setText("Cartón N° 6" );
 
-        txtEstado1.setText(hilos[0].getEstado());
-        txtEstado2.setText(hilos[1].getEstado());
-        txtEstado3.setText(hilos[2].getEstado());
-        txtEstado4.setText(hilos[3].getEstado());
-        txtEstado5.setText(hilos[4].getEstado());
-        txtEstado6.setText(hilos[5].getEstado());
+        txtEstado1.setText("Disponible");
+        txtEstado2.setText("Disponible");
+        txtEstado3.setText("Disponible");
+        txtEstado4.setText("Disponible");
+        txtEstado5.setText("Disponible");
+        txtEstado6.setText("Disponible");
 
-        txtApuesta1.setText("$" + hilos[0].getApuesta());
-        txtApuesta2.setText("$" + hilos[1].getApuesta());
-        txtApuesta3.setText("$" + hilos[2].getApuesta());
-        txtApuesta4.setText("$" + hilos[3].getApuesta());
-        txtApuesta5.setText("$" + hilos[4].getApuesta());
-        txtApuesta6.setText("$" + hilos[5].getApuesta());
+        txtApuesta1.setText("$5");
+        txtApuesta2.setText("$5");
+        txtApuesta3.setText("$5");
+        txtApuesta4.setText("$5");
+        txtApuesta5.setText("$5");
+        txtApuesta6.setText("$5");
 
         txtTotal.setText("$" + banca.getTotalBanca());
 

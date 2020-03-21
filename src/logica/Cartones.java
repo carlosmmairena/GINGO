@@ -26,10 +26,10 @@ public class Cartones extends Thread {
         this.matriz = new byte[8][10];
         this.aciertosJu = 0;
     }
-    public Cartones(byte numCarton, byte[][] matriz) {
+    public Cartones(String estado, byte numCarton, byte[][] matriz) {
         
         this.numCarton = numCarton;
-        this.estado = "Disponible";
+        this.estado = estado;
         this.apuesta = 5;
         this.matriz = matriz;
         this.aciertosJu = 0;
@@ -80,39 +80,5 @@ public class Cartones extends Thread {
 
     public void setAciertosJu(byte aciertosJu) {
         this.aciertosJu = aciertosJu;
-    }
-    
-    public void llenarCarton(){
-        
-        byte num;
-        
-        for (int fil = 0; fil < 8; fil++) {
-            for (int col = 0; col < 10; col++) {
-                
-               num = (byte)(Math.random() * 80 + 1);
-               
-               if(revisar(num)){
-                   col--;
-               } else {
-                   matriz[fil][col] = num;
-               }
-            }
-        }
-    }
-    
-    public boolean revisar(byte num){
-        
-        boolean aviso = false;
-        
-        for (int fil = 0; fil < 8; fil++) {
-            for (int col = 0; col < 10; col++) {
-                
-                if(num == matriz[fil][col]){
-                    aviso = true;
-                    break;
-                }
-            }
-        }
-        return aviso;
     }
 }

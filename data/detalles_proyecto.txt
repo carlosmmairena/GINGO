@@ -23,6 +23,7 @@
 
 ** Queda pendiente cómo funciona la apuesta de los $5.
 ** Queda pendiente cómo funcionan las partidas con los mismos jugadores.
+** La banca debe terner una clase que almacene la tómbola
 --------------------------------------------
 Propiedades del cartón
 -> no disponible, disponible, ocupado

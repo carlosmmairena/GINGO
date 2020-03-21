@@ -33,7 +33,7 @@ public class DlgRegistro extends javax.swing.JDialog {
         this.cartones = cartones;
 
         for (String carton : cartones) {
-            cmbCarton.addItem(carton);
+            cmbCarton.removeItem(carton);
         }
 
     }

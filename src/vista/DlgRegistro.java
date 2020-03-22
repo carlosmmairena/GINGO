@@ -8,6 +8,7 @@ package vista;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import logica.Jugador;
 
 /**
@@ -140,7 +141,7 @@ public class DlgRegistro extends javax.swing.JDialog {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBaseLayout.createSequentialGroup()
-                .addContainerGap(44, Short.MAX_VALUE)
+                .addContainerGap(73, Short.MAX_VALUE)
                 .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -168,7 +169,7 @@ public class DlgRegistro extends javax.swing.JDialog {
                 .addGroup(pnlBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addGroup(pnlBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
                     .addComponent(btnCancelar)
@@ -180,17 +181,11 @@ public class DlgRegistro extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlBase, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(23, 23, 23))
+            .addComponent(pnlBase, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(pnlBase, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(pnlBase, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -199,12 +194,16 @@ public class DlgRegistro extends javax.swing.JDialog {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
-        jugador.setNombre(txtNombre.getText());
-        jugador.setCedula(Integer.parseInt(txtCedula.getText()));
-        jugador.setMontoIni(Integer.parseInt(txtMontoI.getText()));
-        jugador.setDireccion(txtDireccion.getText());
-        this.dispose();
-        
+        if ((cmbCarton.getSelectedIndex() != 0) && (revisarDatos())) {
+            jugador.setNombre(txtNombre.getText());
+            jugador.setCedula(Integer.parseInt(txtCedula.getText()));
+            jugador.setMontoIni(Integer.parseInt(txtMontoI.getText()));
+            jugador.setDireccion(txtDireccion.getText());
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "No sea necioooo, no se puede!");
+        }
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -230,6 +229,9 @@ public class DlgRegistro extends javax.swing.JDialog {
         char tecla;
         tecla = evt.getKeyChar();
         if (!Character.isDigit(tecla) && tecla != KeyEvent.VK_BACK_SPACE) {
+            evt.consume();
+        }
+        if (txtCedula.getText().length() >= 9) {
             evt.consume();
         }
     }//GEN-LAST:event_txtCedulaKeyTyped
@@ -305,15 +307,15 @@ public class DlgRegistro extends javax.swing.JDialog {
         if (txtNombre.getText().isEmpty()) {
             txtNombre.setBackground(Color.red);
             return false;
-            
+
         } else if (txtCedula.getText().isEmpty()) {
             txtCedula.setBackground(Color.red);
             return false;
-            
+
         } else if (txtMontoI.getText().isEmpty()) {
             txtMontoI.setBackground(Color.red);
             return false;
-            
+
         } else if (txtDireccion.getText().isEmpty()) {
             txtDireccion.setBackground(Color.red);
             return false;
@@ -328,8 +330,5 @@ public class DlgRegistro extends javax.swing.JDialog {
     public javax.swing.JComboBox<String> getCmbCarton() {
         return cmbCarton;
     }
-    
-    
-    
-    
+
 }

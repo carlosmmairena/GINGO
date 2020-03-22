@@ -4,6 +4,7 @@
 package vista;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import logica.Banca;
 import logica.Cartones;
 import logica.Jugador;
@@ -141,7 +142,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
@@ -192,6 +192,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnDatos1.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         btnDatos1.setText("Datos del jugador");
         btnDatos1.setEnabled(false);
+        btnDatos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDatos1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlCart1Layout = new javax.swing.GroupLayout(pnlCart1);
         pnlCart1.setLayout(pnlCart1Layout);
@@ -255,6 +260,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         btnTblJug.setText("Tabla de Jugadores");
         btnTblJug.setEnabled(false);
+        btnTblJug.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTblJugActionPerformed(evt);
+            }
+        });
         pnlBase.add(btnTblJug, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 640, 210, 40));
 
         pnlEnca.setBackground(new java.awt.Color(255, 255, 255));
@@ -496,7 +506,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
@@ -534,6 +543,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnDatos2.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         btnDatos2.setText("Datos del jugador");
         btnDatos2.setEnabled(false);
+        btnDatos2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDatos2ActionPerformed(evt);
+            }
+        });
 
         btnCambiar2.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         btnCambiar2.setText("Cambiar");
@@ -622,7 +636,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
@@ -663,6 +676,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnDatos4.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         btnDatos4.setText("Datos del jugador");
         btnDatos4.setEnabled(false);
+        btnDatos4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDatos4ActionPerformed(evt);
+            }
+        });
 
         lblApuesta4.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         lblApuesta4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -743,7 +761,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
@@ -784,6 +801,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnDatos5.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         btnDatos5.setText("Datos del jugador");
         btnDatos5.setEnabled(false);
+        btnDatos5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDatos5ActionPerformed(evt);
+            }
+        });
 
         lblApuesta5.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         lblApuesta5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -866,7 +888,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
@@ -917,6 +938,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnDatos3.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         btnDatos3.setText("Datos del jugador");
         btnDatos3.setEnabled(false);
+        btnDatos3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDatos3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlCart3Layout = new javax.swing.GroupLayout(pnlCart3);
         pnlCart3.setLayout(pnlCart3Layout);
@@ -992,7 +1018,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
@@ -1030,6 +1055,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnDatos6.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         btnDatos6.setText("Datos del jugador");
         btnDatos6.setEnabled(false);
+        btnDatos6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDatos6ActionPerformed(evt);
+            }
+        });
 
         txtEstado6.setEditable(false);
         txtEstado6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -1120,7 +1150,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tblCart1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCart1MouseClicked
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_tblCart1MouseClicked
 
     private void tblNumJugMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNumJugMouseClicked
@@ -1163,8 +1193,96 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void btnAsigCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsigCartActionPerformed
         
         this.asignarCarton();
-        
     }//GEN-LAST:event_btnAsigCartActionPerformed
+
+    private void btnDatos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatos1ActionPerformed
+        
+        Jugador jug = new Jugador();
+        for (Jugador ju : arregloJugad) {
+            if (ju.getCarton().getNumCarton() == 1){
+                jug = ju;
+                break;
+            }
+        }
+        DlgDatosJu datosJu = new DlgDatosJu(this, true, jug);
+        datosJu.setVisible(true);
+    }//GEN-LAST:event_btnDatos1ActionPerformed
+
+    private void btnDatos2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatos2ActionPerformed
+        
+        Jugador jug = new Jugador();
+        for (Jugador ju : arregloJugad) {
+            if (ju.getCarton().getNumCarton() == 2){
+                jug = ju;
+                break;
+            }
+        }
+        DlgDatosJu datosJu = new DlgDatosJu(this, true, jug);
+        datosJu.setVisible(true);
+        
+    }//GEN-LAST:event_btnDatos2ActionPerformed
+
+    private void btnDatos3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatos3ActionPerformed
+        
+        Jugador jug = new Jugador();
+        for (Jugador ju : arregloJugad) {
+            if (ju.getCarton().getNumCarton() == 3){
+                jug = ju;
+                break;
+            }
+        }
+        DlgDatosJu datosJu = new DlgDatosJu(this, true, jug);
+        datosJu.setVisible(true);
+        
+    }//GEN-LAST:event_btnDatos3ActionPerformed
+
+    private void btnDatos4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatos4ActionPerformed
+        
+        Jugador jug = new Jugador();
+        for (Jugador ju : arregloJugad) {
+            if (ju.getCarton().getNumCarton() == 4){
+                jug = ju;
+                break;
+            }
+        }
+        DlgDatosJu datosJu = new DlgDatosJu(this, true, jug);
+        datosJu.setVisible(true);
+        
+    }//GEN-LAST:event_btnDatos4ActionPerformed
+
+    private void btnDatos5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatos5ActionPerformed
+        
+        Jugador jug = new Jugador();
+        for (Jugador ju : arregloJugad) {
+            if (ju.getCarton().getNumCarton() == 5){
+                jug = ju;
+                break;
+            }
+        }
+        DlgDatosJu datosJu = new DlgDatosJu(this, true, jug);
+        datosJu.setVisible(true);
+        
+    }//GEN-LAST:event_btnDatos5ActionPerformed
+
+    private void btnDatos6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatos6ActionPerformed
+        
+        Jugador jug = new Jugador();
+        for (Jugador ju : arregloJugad) {
+            if (ju.getCarton().getNumCarton() == 6){
+                jug = ju;
+                break;
+            }
+        }
+        DlgDatosJu datosJu = new DlgDatosJu(this, true, jug);
+        datosJu.setVisible(true);
+        
+    }//GEN-LAST:event_btnDatos6ActionPerformed
+
+    private void btnTblJugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTblJugActionPerformed
+        // Falta completar la gráfica que muestra los datos del jugador, como el teléfono
+        DlgTablaJugadores tablaJug = new DlgTablaJugadores(this, true, arregloJugad);
+        tablaJug.setVisible(true);
+    }//GEN-LAST:event_btnTblJugActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1297,6 +1415,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         DlgRegistro registrar = new DlgRegistro(this, true, cartonesDisponibles());
         registrar.setVisible(true);
         seleCarton(registrar.getCmbCarton().getSelectedItem().toString(),registrar.getJugador());
+        JOptionPane.showMessageDialog(this, "¡Registrado exitosamente! \nElija 10 números.");
     }
     
     private void seleCarton(String r, Jugador j){
@@ -1304,7 +1423,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         
         switch(r){
             case "Cartón N° 1":
-                carton = new Cartones("Vendido",Byte.parseByte("1"), carTri[0].clone());
+                //carton = new Cartones("Vendido",Byte.parseByte("1"), carTri[0].clone());
+                carton = new Cartones("Vendido",Byte.parseByte("1"), tblCart1);
                 this.hilos.add(carton);
                 this.hilos.trimToSize();
                 j.setCarton(carton);
@@ -1315,7 +1435,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 break;
                 
             case "Cartón N° 2":
-                carton = new Cartones("Vendido",Byte.parseByte("2"), carTri[1].clone());
+                //carton = new Cartones("Vendido",Byte.parseByte("2"), carTri[1].clone());
+                carton = new Cartones("Vendido",Byte.parseByte("2"), tblCart2);
                 this.hilos.add(carton);
                 this.hilos.trimToSize();
                 j.setCarton(carton);
@@ -1326,7 +1447,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 break;
                 
             case "Cartón N° 3":
-                carton = new Cartones("Vendido",Byte.parseByte("3"), carTri[2].clone());
+                //carton = new Cartones("Vendido",Byte.parseByte("3"), carTri[2].clone());
+                carton = new Cartones("Vendido",Byte.parseByte("3"), tblCart3);
                 this.hilos.add(carton);
                 this.hilos.trimToSize();
                 j.setCarton(carton);
@@ -1337,7 +1459,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 break;
                 
             case "Cartón N° 4":
-                carton = new Cartones("Vendido",Byte.parseByte("4"), carTri[3].clone());
+                //carton = new Cartones("Vendido",Byte.parseByte("4"), carTri[3].clone());
+                carton = new Cartones("Vendido",Byte.parseByte("4"), tblCart4);
                 this.hilos.add(carton);
                 this.hilos.trimToSize();
                 j.setCarton(carton);
@@ -1348,7 +1471,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 break;
                 
             case "Cartón N° 5":
-                carton = new Cartones("Vendido", Byte.parseByte("5"), carTri[4].clone());
+                //carton = new Cartones("Vendido", Byte.parseByte("5"), carTri[4].clone());
+                carton = new Cartones("Vendido", Byte.parseByte("5"), tblCart5);
                 this.hilos.add(carton);
                 this.hilos.trimToSize();
                 j.setCarton(carton);
@@ -1359,7 +1483,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 break;
                 
             case "Cartón N° 6":
-                carton = new Cartones("Vendido",Byte.parseByte("6"), carTri[5].clone());
+                //carton = new Cartones("Vendido",Byte.parseByte("6"), carTri[5].clone());
+                carton = new Cartones("Vendido",Byte.parseByte("6"), tblCart6);
                 this.hilos.add(carton);
                 this.hilos.trimToSize();
                 j.setCarton(carton);

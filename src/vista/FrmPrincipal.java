@@ -3,11 +3,14 @@
  */
 package vista;
 
+import java.awt.Color;
 import java.util.ArrayList;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import logica.Banca;
 import logica.Cartones;
 import logica.Jugador;
+import logica.TablaCart;
 
 /**
  *
@@ -27,6 +30,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
         this.carTri = new byte[6][8][10];
         this.hilos = new ArrayList();
         this.arregloJugad = new ArrayList();
+        tblCart1.setBackground(Color.WHITE);
+        tblCart1.setForeground(Color.BLACK);
+        tblCart2.setBackground(Color.WHITE);
+        tblCart3.setBackground(Color.WHITE);
+        tblCart4.setBackground(Color.WHITE);
+        tblCart5.setBackground(Color.WHITE);
+        tblCart6.setBackground(Color.WHITE);
     }
 
     @SuppressWarnings("unchecked")
@@ -132,7 +142,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         pnlCart1.setBackground(new java.awt.Color(255, 255, 255));
         pnlCart1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
-        tblCart1.setBackground(new java.awt.Color(255, 255, 255));
         tblCart1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null},
@@ -338,7 +347,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addGroup(pnlEncaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnNueBol, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnAsigCart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblGingo, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                    .addComponent(lblGingo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnNuevJueg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnGenCart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnComenzar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -356,7 +365,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         lblNumJug.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNumJug.setText("Números Jugados");
 
-        tblNumJug.setBackground(new java.awt.Color(255, 255, 255));
         tblNumJug.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tblNumJug.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -496,7 +504,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         pnlCart2.setBackground(new java.awt.Color(255, 255, 255));
         pnlCart2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
-        tblCart2.setBackground(new java.awt.Color(255, 255, 255));
         tblCart2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null},
@@ -626,7 +633,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         pnlCart4.setBackground(new java.awt.Color(255, 255, 255));
         pnlCart4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
-        tblCart4.setBackground(new java.awt.Color(255, 255, 255));
         tblCart4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null},
@@ -751,7 +757,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         pnlCart5.setBackground(new java.awt.Color(255, 255, 255));
         pnlCart5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
-        tblCart5.setBackground(new java.awt.Color(255, 255, 255));
         tblCart5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null},
@@ -845,7 +850,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCart5Layout.createSequentialGroup()
                                 .addComponent(btnCambiar5)
                                 .addGap(9, 9, 9)))))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jScrollPane9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         pnlCart5Layout.setVerticalGroup(
@@ -878,7 +883,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         pnlCart3.setBackground(new java.awt.Color(255, 255, 255));
         pnlCart3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
-        tblCart3.setBackground(new java.awt.Color(255, 255, 255));
         tblCart3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null},
@@ -1008,7 +1012,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         pnlCart6.setBackground(new java.awt.Color(255, 255, 255));
         pnlCart6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
-        tblCart6.setBackground(new java.awt.Color(255, 255, 255));
         tblCart6.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null},
@@ -1102,7 +1105,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCart6Layout.createSequentialGroup()
                                 .addComponent(btnCambiar6)
                                 .addGap(9, 9, 9)))))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         pnlCart6Layout.setVerticalGroup(
@@ -1149,10 +1152,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tblCart1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCart1MouseClicked
-        
-    }//GEN-LAST:event_tblCart1MouseClicked
-
     private void tblNumJugMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNumJugMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_tblNumJugMouseClicked
@@ -1191,15 +1190,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGenCartActionPerformed
 
     private void btnAsigCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsigCartActionPerformed
-        
+
         this.asignarCarton();
     }//GEN-LAST:event_btnAsigCartActionPerformed
 
     private void btnDatos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatos1ActionPerformed
-        
+
         Jugador jug = new Jugador();
         for (Jugador ju : arregloJugad) {
-            if (ju.getCarton().getNumCarton() == 1){
+            if (ju.getCarton().getNumCarton() == 1) {
                 jug = ju;
                 break;
             }
@@ -1209,73 +1208,73 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDatos1ActionPerformed
 
     private void btnDatos2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatos2ActionPerformed
-        
+
         Jugador jug = new Jugador();
         for (Jugador ju : arregloJugad) {
-            if (ju.getCarton().getNumCarton() == 2){
+            if (ju.getCarton().getNumCarton() == 2) {
                 jug = ju;
                 break;
             }
         }
         DlgDatosJu datosJu = new DlgDatosJu(this, true, jug);
         datosJu.setVisible(true);
-        
+
     }//GEN-LAST:event_btnDatos2ActionPerformed
 
     private void btnDatos3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatos3ActionPerformed
-        
+
         Jugador jug = new Jugador();
         for (Jugador ju : arregloJugad) {
-            if (ju.getCarton().getNumCarton() == 3){
+            if (ju.getCarton().getNumCarton() == 3) {
                 jug = ju;
                 break;
             }
         }
         DlgDatosJu datosJu = new DlgDatosJu(this, true, jug);
         datosJu.setVisible(true);
-        
+
     }//GEN-LAST:event_btnDatos3ActionPerformed
 
     private void btnDatos4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatos4ActionPerformed
-        
+
         Jugador jug = new Jugador();
         for (Jugador ju : arregloJugad) {
-            if (ju.getCarton().getNumCarton() == 4){
+            if (ju.getCarton().getNumCarton() == 4) {
                 jug = ju;
                 break;
             }
         }
         DlgDatosJu datosJu = new DlgDatosJu(this, true, jug);
         datosJu.setVisible(true);
-        
+
     }//GEN-LAST:event_btnDatos4ActionPerformed
 
     private void btnDatos5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatos5ActionPerformed
-        
+
         Jugador jug = new Jugador();
         for (Jugador ju : arregloJugad) {
-            if (ju.getCarton().getNumCarton() == 5){
+            if (ju.getCarton().getNumCarton() == 5) {
                 jug = ju;
                 break;
             }
         }
         DlgDatosJu datosJu = new DlgDatosJu(this, true, jug);
         datosJu.setVisible(true);
-        
+
     }//GEN-LAST:event_btnDatos5ActionPerformed
 
     private void btnDatos6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatos6ActionPerformed
-        
+
         Jugador jug = new Jugador();
         for (Jugador ju : arregloJugad) {
-            if (ju.getCarton().getNumCarton() == 6){
+            if (ju.getCarton().getNumCarton() == 6) {
                 jug = ju;
                 break;
             }
         }
         DlgDatosJu datosJu = new DlgDatosJu(this, true, jug);
         datosJu.setVisible(true);
-        
+
     }//GEN-LAST:event_btnDatos6ActionPerformed
 
     private void btnTblJugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTblJugActionPerformed
@@ -1283,6 +1282,27 @@ public class FrmPrincipal extends javax.swing.JFrame {
         DlgTablaJugadores tablaJug = new DlgTablaJugadores(this, true, arregloJugad);
         tablaJug.setVisible(true);
     }//GEN-LAST:event_btnTblJugActionPerformed
+
+    private void tblCart1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCart1MouseClicked
+
+        String color;
+        JLabel celda = (JLabel) tblCart1.getCellRenderer(tblCart1.getSelectedRow(), tblCart1.getSelectedColumn());
+        
+        if (celda.getForeground() == Color.BLACK) {
+            color = "blanco";
+        } else {
+            color = "rojo";
+        }
+        System.out.println("color de la celda seleccionada: " + color);
+
+        // Enviamos la tabla, la fila y la columna seleccionada
+        TablaCart col = new TablaCart(color, tblCart1.getSelectedRow(), tblCart1.getSelectedColumn());
+
+        tblCart1.getColumnModel().getColumn(tblCart1.getSelectedColumn()).setCellRenderer(col);
+
+        tblCart1.selectAll();
+        
+    }//GEN-LAST:event_tblCart1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -1410,86 +1430,86 @@ public class FrmPrincipal extends javax.swing.JFrame {
     /**
      * Se llama para asignar un cartón
      */
-    private void asignarCarton(){
-        
+    private void asignarCarton() {
+
         DlgRegistro registrar = new DlgRegistro(this, true, cartonesDisponibles());
         registrar.setVisible(true);
-        seleCarton(registrar.getCmbCarton().getSelectedItem().toString(),registrar.getJugador());
+        seleCarton(registrar.getCmbCarton().getSelectedItem().toString(), registrar.getJugador());
         JOptionPane.showMessageDialog(this, "¡Registrado exitosamente! \nElija 10 números.");
     }
-    
-    private void seleCarton(String r, Jugador j){
+
+    private void seleCarton(String r, Jugador j) {
         Cartones carton;
-        
-        switch(r){
+
+        switch (r) {
             case "Cartón N° 1":
                 //carton = new Cartones("Vendido",Byte.parseByte("1"), carTri[0].clone());
-                carton = new Cartones("Vendido",Byte.parseByte("1"), tblCart1);
+                carton = new Cartones("Vendido", Byte.parseByte("1"), tblCart1);
                 this.hilos.add(carton);
                 this.hilos.trimToSize();
                 j.setCarton(carton);
-                
-                txtEstado1.setText(hilos.get(hilos.size()-1).getEstado());
+
+                txtEstado1.setText(hilos.get(hilos.size() - 1).getEstado());
                 btnCambiar1.setEnabled(true);
                 btnDatos1.setEnabled(true);
                 break;
-                
+
             case "Cartón N° 2":
                 //carton = new Cartones("Vendido",Byte.parseByte("2"), carTri[1].clone());
-                carton = new Cartones("Vendido",Byte.parseByte("2"), tblCart2);
+                carton = new Cartones("Vendido", Byte.parseByte("2"), tblCart2);
                 this.hilos.add(carton);
                 this.hilos.trimToSize();
                 j.setCarton(carton);
-                
-                txtEstado2.setText(hilos.get(hilos.size()-1).getEstado());
+
+                txtEstado2.setText(hilos.get(hilos.size() - 1).getEstado());
                 btnCambiar2.setEnabled(true);
                 btnDatos2.setEnabled(true);
                 break;
-                
+
             case "Cartón N° 3":
                 //carton = new Cartones("Vendido",Byte.parseByte("3"), carTri[2].clone());
-                carton = new Cartones("Vendido",Byte.parseByte("3"), tblCart3);
+                carton = new Cartones("Vendido", Byte.parseByte("3"), tblCart3);
                 this.hilos.add(carton);
                 this.hilos.trimToSize();
                 j.setCarton(carton);
-                
-                txtEstado3.setText(hilos.get(hilos.size()-1).getEstado());
+
+                txtEstado3.setText(hilos.get(hilos.size() - 1).getEstado());
                 btnCambiar3.setEnabled(true);
                 btnDatos3.setEnabled(true);
                 break;
-                
+
             case "Cartón N° 4":
                 //carton = new Cartones("Vendido",Byte.parseByte("4"), carTri[3].clone());
-                carton = new Cartones("Vendido",Byte.parseByte("4"), tblCart4);
+                carton = new Cartones("Vendido", Byte.parseByte("4"), tblCart4);
                 this.hilos.add(carton);
                 this.hilos.trimToSize();
                 j.setCarton(carton);
-                
-                txtEstado4.setText(hilos.get(hilos.size()-1).getEstado());
+
+                txtEstado4.setText(hilos.get(hilos.size() - 1).getEstado());
                 btnCambiar4.setEnabled(true);
                 btnDatos4.setEnabled(true);
                 break;
-                
+
             case "Cartón N° 5":
                 //carton = new Cartones("Vendido", Byte.parseByte("5"), carTri[4].clone());
                 carton = new Cartones("Vendido", Byte.parseByte("5"), tblCart5);
                 this.hilos.add(carton);
                 this.hilos.trimToSize();
                 j.setCarton(carton);
-                
-                txtEstado5.setText(hilos.get(hilos.size()-1).getEstado());
+
+                txtEstado5.setText(hilos.get(hilos.size() - 1).getEstado());
                 btnCambiar5.setEnabled(true);
                 btnDatos5.setEnabled(true);
                 break;
-                
+
             case "Cartón N° 6":
                 //carton = new Cartones("Vendido",Byte.parseByte("6"), carTri[5].clone());
-                carton = new Cartones("Vendido",Byte.parseByte("6"), tblCart6);
+                carton = new Cartones("Vendido", Byte.parseByte("6"), tblCart6);
                 this.hilos.add(carton);
                 this.hilos.trimToSize();
                 j.setCarton(carton);
-                
-                txtEstado6.setText(hilos.get(hilos.size()-1).getEstado());
+
+                txtEstado6.setText(hilos.get(hilos.size() - 1).getEstado());
                 btnCambiar6.setEnabled(true);
                 btnDatos6.setEnabled(true);
                 break;
@@ -1497,31 +1517,32 @@ public class FrmPrincipal extends javax.swing.JFrame {
         arregloJugad.add(j);
         arregloJugad.trimToSize();
     }
-    
+
     /**
      * Revisa los cartones disponibles y los retorna en un arreglo de string
-     * @return 
+     *
+     * @return
      */
-    private ArrayList<String> cartonesDisponibles(){
-        
+    private ArrayList<String> cartonesDisponibles() {
+
         ArrayList<String> cartones = new ArrayList();
-        
+
         for (int i = 0; i < hilos.size(); i++) {
-            if(hilos.get(i).getEstado().equals("Vendido")){
-                cartones.add("Cartón N° "+hilos.get(i).getNumCarton());
+            if (hilos.get(i).getEstado().equals("Vendido")) {
+                cartones.add("Cartón N° " + hilos.get(i).getNumCarton());
             }
         }
         cartones.trimToSize();
         return cartones;
     }
-    
+
     /**
      * Rellena la matriz tridimensional
      */
-    private void generarCartones(){
-        
+    private void generarCartones() {
+
         byte num;
-        
+
         for (int posi = 0; posi < 6; posi++) {
             for (int fil = 0; fil < 8; fil++) {
                 for (int col = 0; col < 10; col++) {
@@ -1535,53 +1556,52 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 }
             }
         }
-        
+
         // Asigna el valor de la matriz a cada cartón gráfico
         for (int fil = 0; fil < 8; fil++) {
             for (int col = 0; col < 10; col++) {
-                tblCart1.setValueAt(carTri[0][fil][col],fil,col);
-                tblCart2.setValueAt(carTri[1][fil][col],fil,col);
-                tblCart3.setValueAt(carTri[2][fil][col],fil,col);
-                tblCart4.setValueAt(carTri[3][fil][col],fil,col);
-                tblCart5.setValueAt(carTri[4][fil][col],fil,col);
-                tblCart6.setValueAt(carTri[5][fil][col],fil,col);
+                tblCart1.setValueAt(carTri[0][fil][col], fil, col);
+                tblCart2.setValueAt(carTri[1][fil][col], fil, col);
+                tblCart3.setValueAt(carTri[2][fil][col], fil, col);
+                tblCart4.setValueAt(carTri[3][fil][col], fil, col);
+                tblCart5.setValueAt(carTri[4][fil][col], fil, col);
+                tblCart6.setValueAt(carTri[5][fil][col], fil, col);
             }
         }
-        
+
         this.btnGenCart.setEnabled(false);
         this.btnAsigCart.setEnabled(true);
     }
-    
+
     /**
      * Revisa si un número está repetido
+     *
      * @param num
-     * @return 
+     * @return
      */
     private boolean revisar(byte num, int posi) {
 
         boolean aviso = false;
-            for (int fil = 0; fil < 8; fil++) {
-                for (int col = 0; col < 10; col++) {
+        for (int fil = 0; fil < 8; fil++) {
+            for (int col = 0; col < 10; col++) {
 
-                    if (num == carTri[posi][fil][col]) {
-                        aviso = true;
-                        break;
-                    }
+                if (num == carTri[posi][fil][col]) {
+                    aviso = true;
+                    break;
                 }
             }
+        }
         return aviso;
     }
-    
+
     /**
      * Método que inicializa los parámetros del juego
      */
     private void iniciarJuego() {
 
-        
 //        for (int i = 0; i < hilos.length; i++) {
 //            hilos[i] = new Cartones(Byte.parseByte(String.valueOf(i)), carTri[0].clone());
 //        }
-        
         banca = new Banca();
 
         this.llenarCampos();
@@ -1593,11 +1613,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void llenarCampos() {
 
         lblnumCarton1.setText("Cartón N° 1");
-        lblnumCarton2.setText("Cartón N° 2" );
-        lblnumCarton3.setText("Cartón N° 3" );
-        lblnumCarton4.setText("Cartón N° 4" );
-        lblnumCarton5.setText("Cartón N° 5" );
-        lblnumCarton6.setText("Cartón N° 6" );
+        lblnumCarton2.setText("Cartón N° 2");
+        lblnumCarton3.setText("Cartón N° 3");
+        lblnumCarton4.setText("Cartón N° 4");
+        lblnumCarton5.setText("Cartón N° 5");
+        lblnumCarton6.setText("Cartón N° 6");
 
         txtEstado1.setText("Disponible");
         txtEstado2.setText("Disponible");

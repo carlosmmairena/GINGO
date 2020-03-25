@@ -17,7 +17,7 @@ public class Cartones extends Thread {
     private byte numCarton;
     private String estado;
     private byte apuesta;
-    //private byte matriz[][];
+    private Jugador jugador;
     private JTable carton;
     private byte aciertosJu;
 
@@ -26,18 +26,17 @@ public class Cartones extends Thread {
         this.numCarton = 0;
         this.estado = "Disponible";
         this.apuesta = 0;
-        //this.matriz = new byte[8][10];
+        this.jugador = new Jugador();
         this.carton = new JTable(8, 10);
         this.aciertosJu = 0;
     }
     
-    //public Cartones(String estado, byte numCarton, byte[][] matriz) {
-    public Cartones(String estado, byte numCarton, JTable carton) {
+    public Cartones(String estado, byte numCarton, JTable carton,Jugador jugador) {
         
         this.numCarton = numCarton;
         this.estado = estado;
         this.apuesta = 5;
-        //this.matriz = matriz;
+        this.jugador = jugador;
         this.carton = carton;
         this.aciertosJu = 0;
     }
@@ -73,14 +72,6 @@ public class Cartones extends Thread {
         this.apuesta = apuesta;
     }
 
-//    public byte[][] getMatriz() {
-//        return matriz;
-//    }
-//
-//    public void setMatriz(byte[][] matriz) {
-//        this.matriz = matriz;
-//    }
-
     public byte getAciertosJu() {
         return aciertosJu;
     }
@@ -96,4 +87,13 @@ public class Cartones extends Thread {
     public void setCarton(JTable carton) {
         this.carton = carton;
     }
+
+    public Jugador getJugador() {
+        return jugador;
+    }
+
+    public void setJugador(Jugador jugador) {
+        this.jugador = jugador;
+    }
+    
 }

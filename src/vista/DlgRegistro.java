@@ -19,11 +19,13 @@ public class DlgRegistro extends javax.swing.JDialog {
 
     private Jugador jugador;
     ArrayList<String> cartones;
+    private boolean guardado;
 
     public DlgRegistro(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        jugador = new Jugador();
+        this.jugador = new Jugador();
+        this.guardado = false;
 
     }
 
@@ -32,11 +34,12 @@ public class DlgRegistro extends javax.swing.JDialog {
         initComponents();
         jugador = new Jugador();
         this.cartones = cartones;
+        this.guardado = false;
 
+        // Actualiza automáticamente los cartones disponibles
         for (String carton : cartones) {
             cmbCarton.removeItem(carton);
         }
-
     }
 
     @SuppressWarnings("unchecked")
@@ -57,47 +60,61 @@ public class DlgRegistro extends javax.swing.JDialog {
         btnCancelar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
+        txtTelefono = new javax.swing.JTextField();
+        lblTelefono = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registrar jugador");
 
         pnlBase.setBackground(new java.awt.Color(204, 255, 255));
+        pnlBase.setMinimumSize(new java.awt.Dimension(520, 503));
+        pnlBase.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblCedula.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCedula.setText("Cédula:");
+        pnlBase.add(lblCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 103, 40));
 
         lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblNombre.setText("Nombre:");
+        pnlBase.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 103, 44));
 
         lblDireccion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblDireccion.setText("Dirección:");
+        pnlBase.add(lblDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 103, 44));
 
         lblMonto.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblMonto.setText("Monto Inicial:");
+        pnlBase.add(lblMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 103, 44));
 
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreKeyTyped(evt);
             }
         });
+        pnlBase.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 306, -1));
 
         txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCedulaKeyTyped(evt);
             }
         });
+        pnlBase.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 306, -1));
 
         txtMontoI.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtMontoIKeyTyped(evt);
             }
         });
+        pnlBase.add(txtMontoI, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 147, -1));
 
         cmbCarton.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar cartón", "Cartón N° 1", "Cartón N° 2", "Cartón N° 3", "Cartón N° 4", "Cartón N° 5", "Cartón N° 6" }));
+        pnlBase.add(cmbCarton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, 147, -1));
 
         txtDireccion.setColumns(20);
         txtDireccion.setRows(5);
         jScrollPane1.setViewportView(txtDireccion);
+
+        pnlBase.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 306, -1));
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -105,6 +122,7 @@ public class DlgRegistro extends javax.swing.JDialog {
                 btnCancelarActionPerformed(evt);
             }
         });
+        pnlBase.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 360, 117, 40));
 
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -112,6 +130,7 @@ public class DlgRegistro extends javax.swing.JDialog {
                 btnGuardarActionPerformed(evt);
             }
         });
+        pnlBase.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, 117, 40));
 
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -119,63 +138,18 @@ public class DlgRegistro extends javax.swing.JDialog {
                 btnLimpiarActionPerformed(evt);
             }
         });
+        pnlBase.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 360, 117, 40));
 
-        javax.swing.GroupLayout pnlBaseLayout = new javax.swing.GroupLayout(pnlBase);
-        pnlBase.setLayout(pnlBaseLayout);
-        pnlBaseLayout.setHorizontalGroup(
-            pnlBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBaseLayout.createSequentialGroup()
-                .addGroup(pnlBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnlBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(pnlBaseLayout.createSequentialGroup()
-                        .addComponent(txtMontoI, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cmbCarton, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtNombre)
-                    .addComponent(txtCedula)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBaseLayout.createSequentialGroup()
-                .addContainerGap(73, Short.MAX_VALUE)
-                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60))
-        );
-        pnlBaseLayout.setVerticalGroup(
-            pnlBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBaseLayout.createSequentialGroup()
-                .addGap(112, 112, 112)
-                .addGroup(pnlBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtMontoI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbCarton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                .addGroup(pnlBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGuardar)
-                    .addComponent(btnCancelar)
-                    .addComponent(btnLimpiar))
-                .addGap(60, 60, 60))
-        );
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyTyped(evt);
+            }
+        });
+        pnlBase.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 306, -1));
+
+        lblTelefono.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTelefono.setText("Teléfono:");
+        pnlBase.add(lblTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 103, 23));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -195,13 +169,29 @@ public class DlgRegistro extends javax.swing.JDialog {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
         if ((cmbCarton.getSelectedIndex() != 0) && (revisarDatos())) {
-            jugador.setNombre(txtNombre.getText());
-            jugador.setCedula(Integer.parseInt(txtCedula.getText()));
-            jugador.setMontoIni(Integer.parseInt(txtMontoI.getText()));
-            jugador.setDireccion(txtDireccion.getText());
-            this.dispose();
+
+            if (Integer.parseInt(txtMontoI.getText()) < 100) {
+                JOptionPane.showMessageDialog(this, "El monto inicial para participar debe ser mínimo $100",
+                        "Monto inicial muy bajo",JOptionPane.ERROR_MESSAGE);
+
+            } else {
+
+                jugador.setNombre(txtNombre.getText());
+                jugador.setCedula(Integer.parseInt(txtCedula.getText()));
+                jugador.setTelefono(Integer.parseInt(txtTelefono.getText()));
+                jugador.setMontoIni(Integer.parseInt(txtMontoI.getText()));
+                jugador.setDireccion(txtDireccion.getText());
+                jugador.setNumCarton((byte) cmbCarton.getSelectedIndex());
+                
+                // Cambiar icono
+                JOptionPane.showMessageDialog(this, "¡Registrado exitosamente! \n \bAhora selecciona 10 números para jugar.",
+                        "Registrado",JOptionPane.OK_OPTION);
+                this.guardado = true;
+                this.dispose();
+            }
+
         } else {
-            JOptionPane.showMessageDialog(this, "No sea necioooo, no se puede!");
+            JOptionPane.showMessageDialog(this, "Rellene todos los campos","Error",JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_btnGuardarActionPerformed
@@ -213,6 +203,7 @@ public class DlgRegistro extends javax.swing.JDialog {
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         txtNombre.setText(null);
         txtCedula.setText(null);
+        txtTelefono.setText(null);
         txtMontoI.setText(null);
         txtDireccion.setText(null);
     }//GEN-LAST:event_btnLimpiarActionPerformed
@@ -242,7 +233,21 @@ public class DlgRegistro extends javax.swing.JDialog {
         if (!Character.isDigit(tecla) && tecla != KeyEvent.VK_BACK_SPACE) {
             evt.consume();
         }
+        if (txtMontoI.getText().length() >= 8) {
+            evt.consume();
+        }
     }//GEN-LAST:event_txtMontoIKeyTyped
+
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+        char tecla;
+        tecla = evt.getKeyChar();
+        if (!Character.isDigit(tecla) && tecla != KeyEvent.VK_BACK_SPACE) {
+            evt.consume();
+        }
+        if (txtTelefono.getText().length() >= 8) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTelefonoKeyTyped
 
     /**
      * @param args the command line arguments
@@ -296,11 +301,13 @@ public class DlgRegistro extends javax.swing.JDialog {
     private javax.swing.JLabel lblDireccion;
     private javax.swing.JLabel lblMonto;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblTelefono;
     private javax.swing.JPanel pnlBase;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextArea txtDireccion;
     private javax.swing.JTextField txtMontoI;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 
     private boolean revisarDatos() {
@@ -311,7 +318,9 @@ public class DlgRegistro extends javax.swing.JDialog {
         } else if (txtCedula.getText().isEmpty()) {
             txtCedula.setBackground(Color.red);
             return false;
-
+        } else if (txtTelefono.getText().isEmpty()) {
+            txtTelefono.setBackground(Color.red);
+            return false;
         } else if (txtMontoI.getText().isEmpty()) {
             txtMontoI.setBackground(Color.red);
             return false;
@@ -329,6 +338,10 @@ public class DlgRegistro extends javax.swing.JDialog {
 
     public javax.swing.JComboBox<String> getCmbCarton() {
         return cmbCarton;
+    }
+
+    public boolean isGuardado() {
+        return guardado;
     }
 
 }

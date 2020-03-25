@@ -52,12 +52,10 @@ public class DlgDatosJu extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         lblNombre = new javax.swing.JLabel();
         txtDNombre = new javax.swing.JTextField();
-        lblCedula = new javax.swing.JLabel();
-        txtDCedula = new javax.swing.JTextField();
+        lblTelefono = new javax.swing.JLabel();
+        txtDTelefono = new javax.swing.JTextField();
         lblMonto = new javax.swing.JLabel();
         txtDMontoI = new javax.swing.JTextField();
         lblDireccion = new javax.swing.JLabel();
@@ -66,22 +64,11 @@ public class DlgDatosJu extends javax.swing.JDialog {
         lblDCarton = new javax.swing.JLabel();
         txtDCarton = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tlbNumeros = new javax.swing.JTable();
+        tblNumeros = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         btnRegresar = new javax.swing.JButton();
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable1);
+        txtDCedula = new javax.swing.JTextField();
+        lblCedula = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Jugador");
@@ -94,39 +81,39 @@ public class DlgDatosJu extends javax.swing.JDialog {
         txtDNombre.setEditable(false);
         getContentPane().add(txtDNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 300, -1));
 
-        lblCedula.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblCedula.setText("Cédula:");
-        getContentPane().add(lblCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 103, 44));
+        lblTelefono.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTelefono.setText("Teléfono:");
+        getContentPane().add(lblTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 103, 44));
 
-        txtDCedula.setEditable(false);
-        getContentPane().add(txtDCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 300, -1));
+        txtDTelefono.setEditable(false);
+        getContentPane().add(txtDTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 300, -1));
 
         lblMonto.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblMonto.setText("Monto Inicial:");
-        getContentPane().add(lblMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 103, 44));
+        getContentPane().add(lblMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 103, 44));
 
         txtDMontoI.setEditable(false);
-        getContentPane().add(txtDMontoI, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 147, -1));
+        getContentPane().add(txtDMontoI, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 147, -1));
 
         lblDireccion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblDireccion.setText("Dirección:");
-        getContentPane().add(lblDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 103, 44));
+        getContentPane().add(lblDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 103, 44));
 
         txtDDireccion.setEditable(false);
         txtDDireccion.setColumns(20);
         txtDDireccion.setRows(5);
         jScrollPane1.setViewportView(txtDDireccion);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 300, -1));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 300, -1));
 
         lblDCarton.setText("N° Cartón:");
-        getContentPane().add(lblDCarton, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, -1, 20));
+        getContentPane().add(lblDCarton, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, -1, 20));
 
         txtDCarton.setEditable(false);
-        getContentPane().add(txtDCarton, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, 78, -1));
+        getContentPane().add(txtDCarton, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, 78, -1));
 
-        tlbNumeros.setBackground(new java.awt.Color(255, 255, 255));
-        tlbNumeros.setModel(new javax.swing.table.DefaultTableModel(
+        tblNumeros.setBackground(new java.awt.Color(255, 255, 255));
+        tblNumeros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null}
             },
@@ -142,16 +129,16 @@ public class DlgDatosJu extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        tlbNumeros.setGridColor(new java.awt.Color(204, 204, 204));
-        tlbNumeros.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        tlbNumeros.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        tlbNumeros.setShowGrid(true);
-        jScrollPane3.setViewportView(tlbNumeros);
+        tblNumeros.setGridColor(new java.awt.Color(204, 204, 204));
+        tblNumeros.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblNumeros.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblNumeros.setShowGrid(true);
+        jScrollPane3.setViewportView(tblNumeros);
 
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 480, 40));
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 480, 50));
 
         jLabel1.setText("Números seleccionados");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 340, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 370, -1, -1));
 
         btnRegresar.setText("Regresar");
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
@@ -159,7 +146,14 @@ public class DlgDatosJu extends javax.swing.JDialog {
                 btnRegresarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 440, -1, -1));
+        getContentPane().add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 461, -1, 40));
+
+        txtDCedula.setEditable(false);
+        getContentPane().add(txtDCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 300, -1));
+
+        lblCedula.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblCedula.setText("Cédula:");
+        getContentPane().add(lblCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 103, 44));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -171,6 +165,7 @@ public class DlgDatosJu extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
+       
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -215,29 +210,33 @@ public class DlgDatosJu extends javax.swing.JDialog {
     private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblDCarton;
     private javax.swing.JLabel lblDireccion;
     private javax.swing.JLabel lblMonto;
     private javax.swing.JLabel lblNombre;
-    private javax.swing.JTable tlbNumeros;
+    private javax.swing.JLabel lblTelefono;
+    private javax.swing.JTable tblNumeros;
     private javax.swing.JTextField txtDCarton;
     private javax.swing.JTextField txtDCedula;
     private javax.swing.JTextArea txtDDireccion;
     private javax.swing.JTextField txtDMontoI;
     private javax.swing.JTextField txtDNombre;
+    private javax.swing.JTextField txtDTelefono;
     // End of variables declaration//GEN-END:variables
 
     private void cargarDatos() {
         
-        txtDCarton.setText(jugador.getCarton().getNumCarton()+"");
+        txtDCarton.setText(jugador.getNumCarton()+"");
         txtDCedula.setText(jugador.getCedula()+"");
+        txtDTelefono.setText(jugador.getTelefono()+"");
         txtDDireccion.setText(jugador.getDireccion());
         txtDMontoI.setText(jugador.getMontoIni()+"");
         txtDNombre.setText(jugador.getNombre());
-       
+        
+        for (int i = 0; i < jugador.getNumSelec().length; i++) {
+            tblNumeros.setValueAt(jugador.getNumSelec()[i], 0, i);
+        }
     }
 }

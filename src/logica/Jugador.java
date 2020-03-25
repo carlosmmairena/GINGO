@@ -1,7 +1,6 @@
 /*
     En esta clase, se tiene una agregación de Cartones, por lo que cartones es una matriz de 8x10
-*/
-
+ */
 package logica;
 
 /**
@@ -10,30 +9,38 @@ package logica;
  * @author Carlos Mairena
  */
 public class Jugador {
-    
+
     private int cedula;
     private String nombre;
     private String direccion;
-    private Cartones carton;
+    private int telefono;
+    private int numSelec[];
     private int montoIni;
     private int premio;
+    private byte numCarton;
+    private byte cantidadVec;
 
     public Jugador() {
         this.cedula = 0;
         this.nombre = "";
         this.direccion = "";
-        this.carton = new Cartones();
+        this.numSelec = new int[10];
+        this.telefono = 0;
         this.montoIni = 0;
         this.premio = 0;
+        this.numCarton = 0;
+        cantidadVec = 0;
     }
-    
-    public Jugador(int cedula, String nombre, String direccion, Cartones carton, int montoIni, int premio) {
+
+    public Jugador(int cedula, String nombre, String direccion, int telefono, byte numCarton, int montoIni, int premio) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.direccion = direccion;
-        this.carton = carton;
+        this.telefono = telefono;
+        this.numSelec = new int[10];
         this.montoIni = montoIni;
         this.premio = premio;
+        this.numCarton = numCarton;
     }
 
     public int getCedula() {
@@ -60,14 +67,6 @@ public class Jugador {
         this.direccion = direccion;
     }
 
-    public Cartones getCarton() {
-        return carton;
-    }
-
-    public void setCarton(Cartones carton) {
-        this.carton = carton;
-    }
-
     public int getMontoIni() {
         return montoIni;
     }
@@ -83,7 +82,56 @@ public class Jugador {
     public void setPremio(int premio) {
         this.premio = premio;
     }
-    
-    
-    
+
+    public int getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
+    }
+
+    public int[] getNumSelec() {
+        return numSelec;
+    }
+
+    public void setNumSelec(int[] numSelec) {
+        this.numSelec = numSelec;
+    }
+
+    public byte getNumCarton() {
+        return numCarton;
+    }
+
+    public void setNumCarton(byte numCarton) {
+        this.numCarton = numCarton;
+    }
+
+    /**
+     * Inserta un número en cada posición, si se repite lo elimina
+     *
+     * @param num
+     * @return True en si se agrega
+     */
+    public boolean agregaNumero(int num) {
+
+        boolean agregado = true;
+
+        for (int i = 0; i < numSelec.length; i++) {
+
+            if (num == numSelec[i]) {
+                agregado = false;
+                break;
+            }
+        }
+
+        if (agregado) {
+            numSelec[cantidadVec] = num;
+            cantidadVec++;
+        }
+        
+        return agregado;
+
+    }
+
 }

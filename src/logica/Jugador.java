@@ -14,7 +14,7 @@ public class Jugador {
     private String nombre;
     private String direccion;
     private int telefono;
-    private int numSelec[];
+    private byte numSelec[];
     private int montoIni;
     private int premio;
     private byte numCarton;
@@ -24,12 +24,12 @@ public class Jugador {
         this.cedula = 0;
         this.nombre = "";
         this.direccion = "";
-        this.numSelec = new int[10];
+        this.numSelec = new byte[10];
         this.telefono = 0;
         this.montoIni = 0;
         this.premio = 0;
         this.numCarton = 0;
-        cantidadVec = 0;
+        this.cantidadVec = 0;
     }
 
     public Jugador(int cedula, String nombre, String direccion, int telefono, byte numCarton, int montoIni, int premio) {
@@ -37,7 +37,7 @@ public class Jugador {
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
-        this.numSelec = new int[10];
+        this.numSelec = new byte[10];
         this.montoIni = montoIni;
         this.premio = premio;
         this.numCarton = numCarton;
@@ -91,11 +91,11 @@ public class Jugador {
         this.telefono = telefono;
     }
 
-    public int[] getNumSelec() {
+    public byte[] getNumSelec() {
         return numSelec;
     }
 
-    public void setNumSelec(int[] numSelec) {
+    public void setNumSelec(byte[] numSelec) {
         this.numSelec = numSelec;
     }
 
@@ -113,7 +113,7 @@ public class Jugador {
      * @param num
      * @return True en si se agrega
      */
-    public boolean agregaNumero(int num) {
+    public boolean agregaNumero(byte num) {
 
         boolean agregado = true;
 
@@ -133,5 +133,4 @@ public class Jugador {
         return agregado;
 
     }
-
 }

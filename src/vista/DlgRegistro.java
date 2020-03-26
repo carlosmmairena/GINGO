@@ -116,6 +116,7 @@ public class DlgRegistro extends javax.swing.JDialog {
 
         pnlBase.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 306, -1));
 
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,21 +125,23 @@ public class DlgRegistro extends javax.swing.JDialog {
         });
         pnlBase.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 360, 117, 40));
 
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/guardar.png"))); // NOI18N
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
             }
         });
-        pnlBase.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, 117, 40));
+        pnlBase.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 360, 120, 40));
 
+        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/limpiar.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiarActionPerformed(evt);
             }
         });
-        pnlBase.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 360, 117, 40));
+        pnlBase.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 360, 120, 40));
 
         txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -181,7 +184,6 @@ public class DlgRegistro extends javax.swing.JDialog {
                 jugador.setTelefono(Integer.parseInt(txtTelefono.getText()));
                 jugador.setMontoIni(Integer.parseInt(txtMontoI.getText()));
                 jugador.setDireccion(txtDireccion.getText());
-                jugador.setNumCarton((byte) cmbCarton.getSelectedIndex());
                 
                 // Cambiar icono
                 JOptionPane.showMessageDialog(this, "¡Registrado exitosamente! \n \bAhora selecciona 10 números para jugar.",

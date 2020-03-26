@@ -15,14 +15,21 @@ import javax.swing.table.DefaultTableCellRenderer;
  */
 public class CeldaCustom extends DefaultTableCellRenderer {
 
+    private int num;
     private int row;
     private int column;
-    private byte num;
+    private byte numSelec[];
 
-    public CeldaCustom(byte num, int row, int column) {
+    /**
+     * Recibe el vector que contiene los números...
+     * @param num
+     */
+    public CeldaCustom(byte num, byte numSelec[], int row, int column) {
+        
+        this.num = num;
+        this.numSelec = numSelec;
         this.row = row;
         this.column = column;
-        this.num = num;
     }
 
     @Override
@@ -33,25 +40,41 @@ public class CeldaCustom extends DefaultTableCellRenderer {
         
         
         //if (this.row == row && this.column == column ) {
-        byte v = (byte) table.getValueAt(row, column);
-        if (this.row == row && this.column == column && v == num) {
+        byte v = (byte) value;
+        
+        if (v == num) {
             
             this.setBackground(Color.RED);
             this.setForeground(Color.BLACK);
-            System.out.println("Cambia a blanco porque era rojo");
+            System.out.println("Cambia a rojo porque se seleccionó");
             
-        } else if ( v == num) {
+        } else if (revisarValor(v)) { // Se desmarca y se elimina del vector
             
-            this.setBackground(Color.WHITE);
-            this.setForeground(Color.DARK_GRAY);
-            System.out.println("Cambia a rojo porque si es la seleccinada");
-        } else {
+            this.setBackground(Color.RED);
+            this.setForeground(Color.BLACK);
+            System.out.println("Lo deja en rojo porque si existe el número");
+            
+        } else { // no hace nada porque no se marcó
             
             this.setBackground(Color.WHITE);
             this.setForeground(Color.BLACK);
-            System.out.println("no cambia el color blanco");
-            
+            System.out.println("Lo deja en blanco porque nunca se seleccionó");
         }
+        
         return this;
     }
+    
+    private boolean revisarValor(byte v){
+        boolean existe = false;
+        
+        for (int i = 0; i < numSelec.length; i++) {
+            
+            if ( numSelec[i] ==  v){
+                existe = true;
+            }
+        }
+        
+        return existe;
+    }
+    
 }

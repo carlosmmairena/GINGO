@@ -3,6 +3,9 @@
  */
 package logica;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author dixiana y Carlos
@@ -54,7 +57,7 @@ public class Banca {
      *
      * @return
      */
-    public int producirBolita() {
+    public synchronized int producirBolita() {
 
         boolean repite;
         int bolNueva = 0;
@@ -70,11 +73,43 @@ public class Banca {
                 }
             }
         } while (repite);
-
         this.numBolitas[cantBols] = bolNueva;
         cantBols++;
-
+        this.notifyAll();
+        
         return bolNueva;
     }
 
+    
+    /**
+     * Revisa en el vector del jugador si el número nuevo de la bolita existe con el número creado de la banca
+     *
+     * @param jugador
+     * @return
+     */
+    public synchronized boolean revisarNum(Jugador jugador) {
+        
+        boolean existe = false;
+        try {
+            
+            this.wait();
+            
+            //int bolita = Integer.parseInt(this.numBolitas[posi]);
+            
+            for (int j = 0; j < jugador.getNumSelec().length; j++) {
+                if (jugador.getNumSelec()[j] == numBolitas[cantBols-1]) {
+                    existe = true;
+                    System.out.println("Encontrado");
+                    break;
+                } else {
+                    System.out.println("No encontrado");
+                }
+            }
+            
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Cartones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.notify();
+        return existe;
+    }
 }

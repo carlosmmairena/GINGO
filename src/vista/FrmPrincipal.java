@@ -8,6 +8,8 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import logica.Banca;
 import logica.Cartones;
 import logica.Jugador;
@@ -413,13 +415,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         tblResum.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         tblResum.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "N° Cartón", "Jugador", "Aciertos", "Apuesta", "Premio"
@@ -496,7 +492,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addComponent(lblNumJug1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1159,10 +1155,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void btnNueBolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNueBolActionPerformed
         // Retornamos la nueva bolita
-        int bol = this.banca.getCantBols();
-        System.out.println("Bolita generada: " + bol);
-        txtBolita.setText(bol + "");
-
+        try {
+            this.actuaTblBolitas();
+        } catch (ArrayIndexOutOfBoundsException es) { // Termina el juego
+            this.resumenTabla();
+            JOptionPane.showMessageDialog(this, "Ya ha alcanzado el total de números jugados");
+        }
     }//GEN-LAST:event_btnNueBolActionPerformed
 
     private void btnComenzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComenzarActionPerformed
@@ -1313,6 +1311,29 @@ public class FrmPrincipal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     /**
+     * Actualiza la tabla de las bolitas que van surgiendo
+     *
+     * @param num
+     */
+    private synchronized void actuaTblBolitas() {
+
+        int bol = this.banca.producirBolita();
+        System.out.println("Bolita generada: " + bol);
+        txtBolita.setText(bol + "");
+        
+        this.notifyAll();
+        
+        byte posi = 0;
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 2; j++) {
+
+                tblNumJug.setValueAt(banca.getNumBolitas()[posi], i, j);
+                posi++;
+            }
+        }
+    }
+
+    /**
      * Se utiliza para que el usuario que seleccionó el cartón 1 pueda
      * seleccionar sus números
      */
@@ -1326,8 +1347,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             // Se llama el método que inserta o elimina un número
             jugador.agregaNumero(num);
             // Enviamos el valor de la celda y el vector de la celda
-            CeldaCustom celdaPerso = new CeldaCustom(num, jugador.getNumSelec(),
-                    tblCart1.getSelectedRow(), tblCart1.getSelectedColumn());
+            CeldaCustom celdaPerso = new CeldaCustom(num, jugador.getNumSelec());
 
             // Llamamos al método que recorre toda la columna y no solo la celda
             tblCart1.getColumnModel().getColumn(tblCart1.getSelectedColumn()).
@@ -1343,7 +1363,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             // Si ya está todos los números, entonces creamos el hilo
             if (opc == JOptionPane.NO_OPTION) {
 
-                Cartones carton = new Cartones("Vendido", Byte.parseByte("1"), tblCart1, jugador);
+                Cartones carton = new Cartones("Vendido", Byte.parseByte("1"), tblCart1, jugador, this);
 
                 this.hilos.add(carton);
                 this.hilos.trimToSize();
@@ -1374,8 +1394,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             // Se llama el método que inserta o elimina un número
             jugador.agregaNumero(num);
             // Enviamos el valor de la celda y el vector de la celda
-            CeldaCustom celdaPerso = new CeldaCustom(num, jugador.getNumSelec(),
-                    tblCart2.getSelectedRow(), tblCart2.getSelectedColumn());
+            CeldaCustom celdaPerso = new CeldaCustom(num, jugador.getNumSelec());
 
             // Llamamos al método que recorre toda la columna y no solo la celda
             tblCart2.getColumnModel().getColumn(tblCart2.getSelectedColumn()).
@@ -1391,7 +1410,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             // Si ya está todos los números, entonces creamos el hilo
             if (opc == JOptionPane.NO_OPTION) {
 
-                Cartones carton = new Cartones("Vendido", Byte.parseByte("2"), tblCart2, jugador);
+                Cartones carton = new Cartones("Vendido", Byte.parseByte("2"), tblCart2, jugador, this);
 
                 this.hilos.add(carton);
                 this.hilos.trimToSize();
@@ -1420,8 +1439,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             // Se llama el método que inserta o elimina un número
             jugador.agregaNumero(num);
             // Enviamos el valor de la celda y el vector de la celda
-            CeldaCustom celdaPerso = new CeldaCustom(num, jugador.getNumSelec(),
-                    tblCart3.getSelectedRow(), tblCart3.getSelectedColumn());
+            CeldaCustom celdaPerso = new CeldaCustom(num, jugador.getNumSelec());
 
             // Llamamos al método que recorre toda la columna y no solo la celda
             tblCart3.getColumnModel().getColumn(tblCart3.getSelectedColumn()).
@@ -1437,7 +1455,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             // Si ya está todos los números, entonces creamos el hilo
             if (opc == JOptionPane.NO_OPTION) {
 
-                Cartones carton = new Cartones("Vendido", Byte.parseByte("3"), tblCart3, jugador);
+                Cartones carton = new Cartones("Vendido", Byte.parseByte("3"), tblCart3, jugador, this);
 
                 this.hilos.add(carton);
                 this.hilos.trimToSize();
@@ -1466,8 +1484,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             // Se llama el método que inserta o elimina un número
             jugador.agregaNumero(num);
             // Enviamos el valor de la celda y el vector de la celda
-            CeldaCustom celdaPerso = new CeldaCustom(num, jugador.getNumSelec(),
-                    tblCart4.getSelectedRow(), tblCart4.getSelectedColumn());
+            CeldaCustom celdaPerso = new CeldaCustom(num, jugador.getNumSelec());
 
             // Llamamos al método que recorre toda la columna y no solo la celda
             tblCart4.getColumnModel().getColumn(tblCart4.getSelectedColumn()).
@@ -1483,7 +1500,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             // Si ya está todos los números, entonces creamos el hilo
             if (opc == JOptionPane.NO_OPTION) {
 
-                Cartones carton = new Cartones("Vendido", Byte.parseByte("4"), tblCart4, jugador);
+                Cartones carton = new Cartones("Vendido", Byte.parseByte("4"), tblCart4, jugador, this);
 
                 this.hilos.add(carton);
                 this.hilos.trimToSize();
@@ -1512,8 +1529,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             // Se llama el método que inserta o elimina un número
             jugador.agregaNumero(num);
             // Enviamos el valor de la celda y el vector de la celda
-            CeldaCustom celdaPerso = new CeldaCustom(num, jugador.getNumSelec(),
-                    tblCart5.getSelectedRow(), tblCart5.getSelectedColumn());
+            CeldaCustom celdaPerso = new CeldaCustom(num, jugador.getNumSelec());
 
             // Llamamos al método que recorre toda la columna y no solo la celda
             tblCart5.getColumnModel().getColumn(tblCart5.getSelectedColumn()).
@@ -1529,7 +1545,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             // Si ya está todos los números, entonces creamos el hilo
             if (opc == JOptionPane.NO_OPTION) {
 
-                Cartones carton = new Cartones("Vendido", Byte.parseByte("5"), tblCart5, jugador);
+                Cartones carton = new Cartones("Vendido", Byte.parseByte("5"), tblCart5, jugador, this);
 
                 this.hilos.add(carton);
                 this.hilos.trimToSize();
@@ -1545,6 +1561,24 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }
 
     /**
+     * Muestra el resumen de la tabla
+     */
+    private void resumenTabla(){
+        
+        DefaultTableModel modelo = (DefaultTableModel) (tblResum.getModel());
+        
+        for (int i = 0; i < arregloJugad.size(); i++) {
+            
+            Object datos[] = {arregloJugad.get(i).getNumCarton(),arregloJugad.get(i).getNombre(),
+            arregloJugad.get(i).getAciertosJu(), arregloJugad.get(i).getApuesta(), arregloJugad.get(i).getPremio()};
+            
+            modelo.addRow(datos);
+        }
+        
+        tblResum.setModel(modelo);
+    }
+    
+    /**
      * Se utiliza para que el usuario que seleccionó el cartón 6 pueda
      * seleccionar sus números
      */
@@ -1558,8 +1592,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             // Se llama el método que inserta o elimina un número
             jugador.agregaNumero(num);
             // Enviamos el valor de la celda y el vector de la celda
-            CeldaCustom celdaPerso = new CeldaCustom(num, jugador.getNumSelec(),
-                    tblCart6.getSelectedRow(), tblCart6.getSelectedColumn());
+            CeldaCustom celdaPerso = new CeldaCustom(num, jugador.getNumSelec());
 
             // Llamamos al método que recorre toda la columna y no solo la celda
             tblCart6.getColumnModel().getColumn(tblCart6.getSelectedColumn()).
@@ -1575,7 +1608,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             // Si ya está todos los números, entonces creamos el hilo
             if (opc == JOptionPane.NO_OPTION) {
 
-                Cartones carton = new Cartones("Vendido", Byte.parseByte("6"), tblCart6, jugador);
+                Cartones carton = new Cartones("Vendido", Byte.parseByte("6"), tblCart6, jugador, this);
 
                 this.hilos.add(carton);
                 this.hilos.trimToSize();
@@ -1595,7 +1628,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
      */
     private void asignarJugador() {
 
-        DlgRegistro registrar = new DlgRegistro(this, true, cartonesDisponibles());
+        DlgRegistro registrar = new DlgRegistro(this, true, cartonesDisponibles(),cedulasRegistradas());
         registrar.setVisible(true);
 
         // Si ha seleccionado guardar el registro
@@ -1659,6 +1692,24 @@ public class FrmPrincipal extends javax.swing.JFrame {
      *
      * @return
      */
+    private ArrayList<String> cedulasRegistradas() {
+
+        ArrayList<String> cedulas = new ArrayList();
+
+        for (int i = 0; i < arregloJugad.size(); i++) {
+            
+                cedulas.add(arregloJugad.get(i).getCedula()+"");
+            
+        }
+        cedulas.trimToSize();
+        return cedulas;
+    }
+    
+    /**
+     * Revisa los cartones disponibles y los retorna en un arreglo de string
+     *
+     * @return
+     */
     private ArrayList<String> cartonesDisponibles() {
 
         ArrayList<String> cartones = new ArrayList();
@@ -1671,7 +1722,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         cartones.trimToSize();
         return cartones;
     }
-
+    
     /**
      * Rellena la matriz tridimensional, generando cada número aleatoriamente
      */
@@ -1780,4 +1831,19 @@ public class FrmPrincipal extends javax.swing.JFrame {
             btnTblJug.setEnabled(true);
         }
     }
+
+    /**
+     * Obtenemos el campo del texto
+     *
+     * @return
+     */
+    public javax.swing.JTextField getTxtBolita() {
+        
+        return txtBolita;
+    }
+    
+    public Banca getBanca() {
+        return banca;
+    }
+
 }

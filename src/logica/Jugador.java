@@ -19,6 +19,8 @@ public class Jugador {
     private int premio;
     private byte numCarton;
     private int cantidadVec;
+    private byte aciertosJu;
+    private byte apuesta;
 
     public Jugador() {
         this.cedula = 0;
@@ -30,6 +32,8 @@ public class Jugador {
         this.premio = 0;
         this.numCarton = 0;
         this.cantidadVec = 0;
+        this.aciertosJu = 0;
+        this.apuesta = 0;
     }
 
     public Jugador(int cedula, String nombre, String direccion, int telefono, byte numCarton, int montoIni, int premio) {
@@ -41,6 +45,16 @@ public class Jugador {
         this.montoIni = montoIni;
         this.premio = premio;
         this.numCarton = numCarton;
+        this.aciertosJu = 0;
+        this.apuesta = 0;
+    }
+
+    public byte getApuesta() {
+        return apuesta;
+    }
+
+    public void setApuesta(byte apuesta) {
+        this.apuesta = apuesta;
     }
 
     public int getCedula() {
@@ -107,8 +121,25 @@ public class Jugador {
         this.numCarton = numCarton;
     }
 
+    public int getCantidadVec() {
+        return cantidadVec;
+    }
+
+    public void setCantidadVec(int cantidadVec) {
+        this.cantidadVec = cantidadVec;
+    }
+
+    public byte getAciertosJu() {
+        return aciertosJu;
+    }
+
+    public void setAciertosJu(byte aciertosJu) {
+        this.aciertosJu = aciertosJu;
+    }
+    
     /**
      * Inserta un número en cada posición, si se repite lo eliminamos
+     *
      * @param num Número obtenido desde la celda seleccionada
      */
     public void agregaNumero(byte num) {
@@ -134,14 +165,17 @@ public class Jugador {
     }
 
     /**
-     * Nos movemos los números que están delante para dejar libre la última posición
-     * @param i 
+     * Nos movemos los números que están delante para dejar libre la última
+     * posición
+     *
+     * @param i
      */
     private void reordenar(int i) {
-        
-        for (int j = i; j < (cantidadVec-1); j++) {
+
+    for (int j = i; j < (cantidadVec - 1); j++) {
             numSelec[j] = numSelec[j + 1];
             numSelec[j + 1] = 0;
         }
     }
+
 }

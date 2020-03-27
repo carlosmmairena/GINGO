@@ -15,8 +15,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 public class CeldaCustom extends DefaultTableCellRenderer {
 
     private int num;
-    private int row;
-    private int column;
     private byte numSelec[];
 
     /**
@@ -24,15 +22,11 @@ public class CeldaCustom extends DefaultTableCellRenderer {
      *
      * @param num
      * @param numSelec
-     * @param row
-     * @param column
      */
-    public CeldaCustom(byte num, byte numSelec[], int row, int column) {
+    public CeldaCustom(byte num, byte numSelec[]) {
 
         this.num = num;
         this.numSelec = numSelec;
-        this.row = row;
-        this.column = column;
     }
 
     @Override
@@ -68,6 +62,7 @@ public class CeldaCustom extends DefaultTableCellRenderer {
         return this;
     }
 
+
     private boolean revisarValor(byte v) {
         boolean existe = false;
 
@@ -78,7 +73,6 @@ public class CeldaCustom extends DefaultTableCellRenderer {
                 break;
             }
         }
-
         return existe;
     }
 

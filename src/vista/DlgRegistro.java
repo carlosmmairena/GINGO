@@ -19,6 +19,7 @@ public class DlgRegistro extends javax.swing.JDialog {
 
     private Jugador jugador;
     ArrayList<String> cartones;
+    ArrayList<String> cedulas;
     private boolean guardado;
 
     public DlgRegistro(java.awt.Frame parent, boolean modal) {
@@ -29,12 +30,13 @@ public class DlgRegistro extends javax.swing.JDialog {
 
     }
 
-    public DlgRegistro(java.awt.Frame parent, boolean modal, ArrayList<String> cartones) {
+    public DlgRegistro(java.awt.Frame parent, boolean modal, ArrayList<String> cartones, ArrayList<String> cedulas) {
         super(parent, modal);
         initComponents();
         jugador = new Jugador();
         this.cartones = cartones;
         this.guardado = false;
+        this.cedulas = cedulas;
 
         // Actualiza automáticamente los cartones disponibles
         for (String carton : cartones) {
@@ -208,25 +210,26 @@ public class DlgRegistro extends javax.swing.JDialog {
 
             if (Integer.parseInt(txtMontoI.getText()) < 100) {
                 JOptionPane.showMessageDialog(this, "El monto inicial para participar debe ser mínimo $100",
-                        "Monto inicial muy bajo",JOptionPane.ERROR_MESSAGE);
+                        "Monto inicial muy bajo", JOptionPane.ERROR_MESSAGE);
 
+            } else if (validarCedula(txtCedula.getText())) {
+                JOptionPane.showMessageDialog(this, "Esta cédula ya fue registrada");
             } else {
-
                 jugador.setNombre(txtNombre.getText());
                 jugador.setCedula(Integer.parseInt(txtCedula.getText()));
                 jugador.setTelefono(Integer.parseInt(txtTelefono.getText()));
                 jugador.setMontoIni(Integer.parseInt(txtMontoI.getText()));
                 jugador.setDireccion(txtDireccion.getText());
-                
+
                 // Cambiar icono
                 JOptionPane.showMessageDialog(this, "¡Registrado exitosamente! \n \bAhora selecciona 10 números para jugar.",
-                        "Registrado",JOptionPane.OK_OPTION);
+                        "Registrado", JOptionPane.OK_OPTION);
                 this.guardado = true;
                 this.dispose();
             }
 
         } else {
-            JOptionPane.showMessageDialog(this, "Rellene todos los campos","Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Rellene todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_btnGuardarActionPerformed
@@ -398,6 +401,31 @@ public class DlgRegistro extends javax.swing.JDialog {
 
     public boolean isGuardado() {
         return guardado;
+    }
+
+    /**
+     * Revisa que la cédula no sea igual a las ya registradas
+     *
+     * @param ced
+     * @return
+     */
+    public boolean validarCedula(String ced) {
+
+        boolean existe = false;
+        try {
+            if (!cedulas.isEmpty()) {
+
+                for (int i = 0; i < cedulas.size(); i++) {
+
+                    if (cedulas.get(i).equals(ced)) {
+                        existe = true;
+                    }
+                }
+            }
+            return existe;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
 }

@@ -21,20 +21,21 @@ import logica.CeldaCustom;
 public class FrmPrincipal extends javax.swing.JFrame {
 
     private byte carTri[][][];
-    ArrayList<Cartones> hilos;
-    Banca banca;
-    ArrayList<Jugador> arregloJugad;
-    Jugador jugador;
+    private ArrayList<Cartones> hilos;
+    private Banca banca;
+    private ArrayList<Jugador> arregloJugad;
+    private Jugador jugador;
     private String numCarton;
 
     public FrmPrincipal() {
         initComponents();
         this.jugador = new Jugador();
         this.numCarton = "";
-        
+        this.banca = new Banca();
+
         //Obtnemos la resolución de pantalla
         Dimension tamanioPan = Toolkit.getDefaultToolkit().getScreenSize();
-        
+
         this.setSize(tamanioPan);
         this.setExtendedState(MAXIMIZED_BOTH);
 
@@ -308,10 +309,20 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnComenzar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iniciarJuego.png"))); // NOI18N
         btnComenzar.setText("Comenzar Juego");
         btnComenzar.setEnabled(false);
+        btnComenzar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComenzarActionPerformed(evt);
+            }
+        });
 
         btnNueBol.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bolitas.png"))); // NOI18N
         btnNueBol.setText("Nueva Bolita");
         btnNueBol.setEnabled(false);
+        btnNueBol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNueBolActionPerformed(evt);
+            }
+        });
 
         txtBolita.setEditable(false);
         txtBolita.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -391,13 +402,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         tblNumJug.setGridColor(new java.awt.Color(102, 102, 102));
         tblNumJug.setRowHeight(25);
         tblNumJug.setRowSelectionAllowed(false);
-        tblNumJug.setSelectionBackground(new java.awt.Color(204, 255, 255));
+        tblNumJug.setSelectionBackground(new java.awt.Color(184, 186, 253));
         tblNumJug.setShowGrid(true);
-        tblNumJug.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblNumJugMouseClicked(evt);
-            }
-        });
         jScrollPane7.setViewportView(tblNumJug);
 
         lblNumJug1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -430,15 +436,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
         tblResum.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         tblResum.setGridColor(new java.awt.Color(102, 102, 102));
         tblResum.setRowHeight(20);
-        tblResum.setSelectionBackground(new java.awt.Color(204, 255, 255));
+        tblResum.setSelectionBackground(new java.awt.Color(184, 186, 253));
         tblResum.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblResum.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblResum.setShowGrid(true);
-        tblResum.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblResumMouseClicked(evt);
-            }
-        });
         jScrollPane8.setViewportView(tblResum);
 
         lblTotal.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -455,10 +456,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblNumJug, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -466,9 +463,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                         .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(48, 48, 48)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblNumJug1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 32, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -480,6 +475,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
                         .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblNumJug, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblNumJug1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -492,7 +496,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addComponent(lblNumJug1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -946,9 +950,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
                             .addComponent(pnlCart3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(pnlCart6, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBaseLayout.createSequentialGroup()
-                        .addContainerGap()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnTblJug, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(353, 353, 353)))
+                        .addGap(355, 355, 355)))
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(1, 1, 1))
             .addComponent(pnlEnca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -973,9 +977,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
                                 .addComponent(pnlCart3, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, 0)
                                 .addComponent(pnlCart6, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(btnTblJug, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 24, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         getContentPane().add(pnlBase);
@@ -995,25 +999,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tblNumJugMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNumJugMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tblNumJugMouseClicked
-
-    private void tblResumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblResumMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tblResumMouseClicked
-
     private void btnNuevJuegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevJuegActionPerformed
-        this.iniciarJuego();
+        this.nuevoJuego();
     }//GEN-LAST:event_btnNuevJuegActionPerformed
 
     private void btnGenCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenCartActionPerformed
         this.generarCartones();
-
     }//GEN-LAST:event_btnGenCartActionPerformed
 
     private void btnAsigCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsigCartActionPerformed
-
         this.asignarJugador();
     }//GEN-LAST:event_btnAsigCartActionPerformed
 
@@ -1101,15 +1095,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDatos6ActionPerformed
 
     private void btnTblJugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTblJugActionPerformed
-        // Se muestran todos los jugadores registrados hasta el momento.
-        if (arregloJugad.size() != 0) {
-            DlgTablaJugadores tablaJug = new DlgTablaJugadores(this, true, arregloJugad);
-            tablaJug.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(this, "No hay jugadores registrados", "Información",
-                    JOptionPane.OK_OPTION);
-        }
+
+        DlgTablaJugadores tablaJug = new DlgTablaJugadores(this, true, arregloJugad);
+        tablaJug.setVisible(true);
+
     }//GEN-LAST:event_btnTblJugActionPerformed
+
 
     private void tblCart1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCart1MouseClicked
         if (jugador.getNumCarton() == 1) {
@@ -1121,24 +1112,82 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_tblCart1MouseClicked
 
     private void tblCart2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCart2MouseClicked
-
+        if (jugador.getNumCarton() == 2) {
+            this.clickTabla2();
+        } else {
+            JOptionPane.showMessageDialog(this, "No es este cartón el seleccionado");
+            System.out.println("No es este cartón el seleccionado");
+        }
     }//GEN-LAST:event_tblCart2MouseClicked
 
     private void tblCart3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCart3MouseClicked
-
+        if (jugador.getNumCarton() == 3) {
+            this.clickTabla3();
+        } else {
+            JOptionPane.showMessageDialog(this, "No es este cartón el seleccionado");
+            System.out.println("No es este cartón el seleccionado");
+        }
     }//GEN-LAST:event_tblCart3MouseClicked
 
     private void tblCart4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCart4MouseClicked
-
+        if (jugador.getNumCarton() == 4) {
+            this.clickTabla4();
+        } else {
+            JOptionPane.showMessageDialog(this, "No es este cartón el seleccionado");
+            System.out.println("No es este cartón el seleccionado");
+        }
     }//GEN-LAST:event_tblCart4MouseClicked
 
     private void tblCart5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCart5MouseClicked
-
+        if (jugador.getNumCarton() == 5) {
+            this.clickTabla5();
+        } else {
+            JOptionPane.showMessageDialog(this, "No es este cartón el seleccionado");
+            System.out.println("No es este cartón el seleccionado");
+        }
     }//GEN-LAST:event_tblCart5MouseClicked
 
     private void tblCart6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCart6MouseClicked
-
+        if (jugador.getNumCarton() == 6) {
+            this.clickTabla6();
+        } else {
+            JOptionPane.showMessageDialog(this, "No es este cartón el seleccionado");
+            System.out.println("No es este cartón el seleccionado");
+        }
     }//GEN-LAST:event_tblCart6MouseClicked
+
+
+    private void btnNueBolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNueBolActionPerformed
+        // Retornamos la nueva bolita
+        int bol = this.banca.getCantBols();
+        System.out.println("Bolita generada: " + bol);
+        txtBolita.setText(bol + "");
+
+    }//GEN-LAST:event_btnNueBolActionPerformed
+
+    private void btnComenzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComenzarActionPerformed
+
+        int opc = JOptionPane.showConfirmDialog(this, "¿Desea iniciar el juego?", "Iniciar Juego", JOptionPane.YES_NO_OPTION);
+
+        if (opc == JOptionPane.YES_OPTION) {
+            this.iniciarJuego();
+        }
+
+    }//GEN-LAST:event_btnComenzarActionPerformed
+
+    /**
+     * Se llama cuando se arranca el juego
+     */
+    private void iniciarJuego() {
+
+        System.out.println("Inciamos los hilos que se generaron y están el vector");
+
+        for (int i = 0; i < hilos.size(); i++) {
+            hilos.get(i).start();
+        }
+        this.btnNueBol.setEnabled(true);
+
+    }
 
     /**
      * @param args the command line arguments
@@ -1264,28 +1313,23 @@ public class FrmPrincipal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     /**
-     * Llamado en el evento de clicked cartón 1
+     * Se utiliza para que el usuario que seleccionó el cartón 1 pueda
+     * seleccionar sus números
      */
     private void clickTabla1() {
 
         // Cuando se sobre pase el tamaño, llega la excepción, de tipo ArrayIndexOutOfBoundsException
         try {
 
-            // Si el número de cartón es el de esta tabla, entonces continua
-            //if (numCarton.equals("Cartón N° 1")) {
             byte num = (byte) tblCart1.getValueAt(tblCart1.getSelectedRow(), tblCart1.getSelectedColumn());
 
-            if (jugador.agregaNumero(num)) {
-                System.out.println("Se agregó " + num);
-            } else {
-                System.out.println("No se agregó");
-            }
-
-          // Enviamos el valor de la celda y el vecor de la celda
+            // Se llama el método que inserta o elimina un número
+            jugador.agregaNumero(num);
+            // Enviamos el valor de la celda y el vector de la celda
             CeldaCustom celdaPerso = new CeldaCustom(num, jugador.getNumSelec(),
                     tblCart1.getSelectedRow(), tblCart1.getSelectedColumn());
-            
-//        // Llamamos al método que recorre toda la columna y no solo la celda
+
+            // Llamamos al método que recorre toda la columna y no solo la celda
             tblCart1.getColumnModel().getColumn(tblCart1.getSelectedColumn()).
                     setCellRenderer(celdaPerso);
 
@@ -1307,13 +1351,243 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 arregloJugad.trimToSize();
 
                 this.jugador = new Jugador();
-                //this.numCarton = "";
                 btnDatos1.setEnabled(true);
                 btnAsigCart.setEnabled(true);
+                this.verificaLisJuga();
             }
 
         }
 
+    }
+
+    /**
+     * Se utiliza para que el usuario que seleccionó el cartón 2 pueda
+     * seleccionar sus números
+     */
+    private void clickTabla2() {
+
+        // Cuando se sobre pase el tamaño, llega la excepción, de tipo ArrayIndexOutOfBoundsException
+        try {
+
+            byte num = (byte) tblCart2.getValueAt(tblCart2.getSelectedRow(), tblCart2.getSelectedColumn());
+
+            // Se llama el método que inserta o elimina un número
+            jugador.agregaNumero(num);
+            // Enviamos el valor de la celda y el vector de la celda
+            CeldaCustom celdaPerso = new CeldaCustom(num, jugador.getNumSelec(),
+                    tblCart2.getSelectedRow(), tblCart2.getSelectedColumn());
+
+            // Llamamos al método que recorre toda la columna y no solo la celda
+            tblCart2.getColumnModel().getColumn(tblCart2.getSelectedColumn()).
+                    setCellRenderer(celdaPerso);
+
+            tblCart2.selectAll();
+
+        } catch (ArrayIndexOutOfBoundsException ex) {
+
+            int opc = JOptionPane.showConfirmDialog(this, "Ha seleccionado la totalidad de 10 números.\n"
+                    + "¿Desea modificar su selección?", "Números completados", JOptionPane.YES_NO_OPTION);
+
+            // Si ya está todos los números, entonces creamos el hilo
+            if (opc == JOptionPane.NO_OPTION) {
+
+                Cartones carton = new Cartones("Vendido", Byte.parseByte("2"), tblCart2, jugador);
+
+                this.hilos.add(carton);
+                this.hilos.trimToSize();
+                arregloJugad.add(jugador);
+                arregloJugad.trimToSize();
+
+                this.jugador = new Jugador();
+                btnDatos2.setEnabled(true);
+                btnAsigCart.setEnabled(true);
+                this.verificaLisJuga();
+            }
+        }
+    }
+
+    /**
+     * Se utiliza para que el usuario que seleccionó el cartón 3 pueda
+     * seleccionar sus números
+     */
+    private void clickTabla3() {
+
+        // Cuando se sobre pase el tamaño, llega la excepción, de tipo ArrayIndexOutOfBoundsException
+        try {
+
+            byte num = (byte) tblCart3.getValueAt(tblCart3.getSelectedRow(), tblCart3.getSelectedColumn());
+
+            // Se llama el método que inserta o elimina un número
+            jugador.agregaNumero(num);
+            // Enviamos el valor de la celda y el vector de la celda
+            CeldaCustom celdaPerso = new CeldaCustom(num, jugador.getNumSelec(),
+                    tblCart3.getSelectedRow(), tblCart3.getSelectedColumn());
+
+            // Llamamos al método que recorre toda la columna y no solo la celda
+            tblCart3.getColumnModel().getColumn(tblCart3.getSelectedColumn()).
+                    setCellRenderer(celdaPerso);
+
+            tblCart3.selectAll();
+
+        } catch (ArrayIndexOutOfBoundsException ex) {
+
+            int opc = JOptionPane.showConfirmDialog(this, "Ha seleccionado la totalidad de 10 números.\n"
+                    + "¿Desea modificar su selección?", "Números completados", JOptionPane.YES_NO_OPTION);
+
+            // Si ya está todos los números, entonces creamos el hilo
+            if (opc == JOptionPane.NO_OPTION) {
+
+                Cartones carton = new Cartones("Vendido", Byte.parseByte("3"), tblCart3, jugador);
+
+                this.hilos.add(carton);
+                this.hilos.trimToSize();
+                arregloJugad.add(jugador);
+                arregloJugad.trimToSize();
+
+                this.jugador = new Jugador();
+                btnDatos3.setEnabled(true);
+                btnAsigCart.setEnabled(true);
+                this.verificaLisJuga();
+            }
+        }
+    }
+
+    /**
+     * Se utiliza para que el usuario que seleccionó el cartón 4 pueda
+     * seleccionar sus números
+     */
+    private void clickTabla4() {
+
+        // Cuando se sobre pase el tamaño, llega la excepción, de tipo ArrayIndexOutOfBoundsException
+        try {
+
+            byte num = (byte) tblCart4.getValueAt(tblCart4.getSelectedRow(), tblCart4.getSelectedColumn());
+
+            // Se llama el método que inserta o elimina un número
+            jugador.agregaNumero(num);
+            // Enviamos el valor de la celda y el vector de la celda
+            CeldaCustom celdaPerso = new CeldaCustom(num, jugador.getNumSelec(),
+                    tblCart4.getSelectedRow(), tblCart4.getSelectedColumn());
+
+            // Llamamos al método que recorre toda la columna y no solo la celda
+            tblCart4.getColumnModel().getColumn(tblCart4.getSelectedColumn()).
+                    setCellRenderer(celdaPerso);
+
+            tblCart4.selectAll();
+
+        } catch (ArrayIndexOutOfBoundsException ex) {
+
+            int opc = JOptionPane.showConfirmDialog(this, "Ha seleccionado la totalidad de 10 números.\n"
+                    + "¿Desea modificar su selección?", "Números completados", JOptionPane.YES_NO_OPTION);
+
+            // Si ya está todos los números, entonces creamos el hilo
+            if (opc == JOptionPane.NO_OPTION) {
+
+                Cartones carton = new Cartones("Vendido", Byte.parseByte("4"), tblCart4, jugador);
+
+                this.hilos.add(carton);
+                this.hilos.trimToSize();
+                arregloJugad.add(jugador);
+                arregloJugad.trimToSize();
+
+                this.jugador = new Jugador();
+                btnDatos4.setEnabled(true);
+                btnAsigCart.setEnabled(true);
+                this.verificaLisJuga();
+            }
+        }
+    }
+
+    /**
+     * Se utiliza para que el usuario que seleccionó el cartón 5 pueda
+     * seleccionar sus números
+     */
+    private void clickTabla5() {
+
+        // Cuando se sobre pase el tamaño, llega la excepción, de tipo ArrayIndexOutOfBoundsException
+        try {
+
+            byte num = (byte) tblCart5.getValueAt(tblCart5.getSelectedRow(), tblCart5.getSelectedColumn());
+
+            // Se llama el método que inserta o elimina un número
+            jugador.agregaNumero(num);
+            // Enviamos el valor de la celda y el vector de la celda
+            CeldaCustom celdaPerso = new CeldaCustom(num, jugador.getNumSelec(),
+                    tblCart5.getSelectedRow(), tblCart5.getSelectedColumn());
+
+            // Llamamos al método que recorre toda la columna y no solo la celda
+            tblCart5.getColumnModel().getColumn(tblCart5.getSelectedColumn()).
+                    setCellRenderer(celdaPerso);
+
+            tblCart5.selectAll();
+
+        } catch (ArrayIndexOutOfBoundsException ex) {
+
+            int opc = JOptionPane.showConfirmDialog(this, "Ha seleccionado la totalidad de 10 números.\n"
+                    + "¿Desea modificar su selección?", "Números completados", JOptionPane.YES_NO_OPTION);
+
+            // Si ya está todos los números, entonces creamos el hilo
+            if (opc == JOptionPane.NO_OPTION) {
+
+                Cartones carton = new Cartones("Vendido", Byte.parseByte("5"), tblCart5, jugador);
+
+                this.hilos.add(carton);
+                this.hilos.trimToSize();
+                arregloJugad.add(jugador);
+                arregloJugad.trimToSize();
+
+                this.jugador = new Jugador();
+                btnDatos5.setEnabled(true);
+                btnAsigCart.setEnabled(true);
+                this.verificaLisJuga();
+            }
+        }
+    }
+
+    /**
+     * Se utiliza para que el usuario que seleccionó el cartón 6 pueda
+     * seleccionar sus números
+     */
+    private void clickTabla6() {
+
+        // Cuando se sobre pase el tamaño, llega la excepción, de tipo ArrayIndexOutOfBoundsException
+        try {
+
+            byte num = (byte) tblCart6.getValueAt(tblCart6.getSelectedRow(), tblCart6.getSelectedColumn());
+
+            // Se llama el método que inserta o elimina un número
+            jugador.agregaNumero(num);
+            // Enviamos el valor de la celda y el vector de la celda
+            CeldaCustom celdaPerso = new CeldaCustom(num, jugador.getNumSelec(),
+                    tblCart6.getSelectedRow(), tblCart6.getSelectedColumn());
+
+            // Llamamos al método que recorre toda la columna y no solo la celda
+            tblCart6.getColumnModel().getColumn(tblCart6.getSelectedColumn()).
+                    setCellRenderer(celdaPerso);
+
+            tblCart6.selectAll();
+
+        } catch (ArrayIndexOutOfBoundsException ex) {
+
+            int opc = JOptionPane.showConfirmDialog(this, "Ha seleccionado la totalidad de 10 números.\n"
+                    + "¿Desea modificar su selección?", "Números completados", JOptionPane.YES_NO_OPTION);
+
+            // Si ya está todos los números, entonces creamos el hilo
+            if (opc == JOptionPane.NO_OPTION) {
+
+                Cartones carton = new Cartones("Vendido", Byte.parseByte("6"), tblCart6, jugador);
+
+                this.hilos.add(carton);
+                this.hilos.trimToSize();
+                arregloJugad.add(jugador);
+                arregloJugad.trimToSize();
+
+                this.jugador = new Jugador();
+                btnDatos6.setEnabled(true);
+                btnAsigCart.setEnabled(true);
+                this.verificaLisJuga();
+            }
+        }
     }
 
     /**
@@ -1399,7 +1673,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }
 
     /**
-     * Rellena la matriz tridimensional, generando el número
+     * Rellena la matriz tridimensional, generando cada número aleatoriamente
      */
     private void generarCartones() {
 
@@ -1460,13 +1734,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
     /**
      * Método que inicializa los parámetros del juego
      */
-    private void iniciarJuego() {
+    private void nuevoJuego() {
 
         banca = new Banca();
         this.llenarCampos();
         btnNuevJueg.setEnabled(false);
         btnGenCart.setEnabled(true);
-        btnTblJug.setEnabled(true);
     }
 
     /**
@@ -1498,4 +1771,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
         txtTotal.setText("$" + banca.getTotalBanca());
     }
 
+    /**
+     * Verifica si en la lista de los jugadores existe al menos 1 registrado
+     */
+    private void verificaLisJuga() {
+        if (arregloJugad.size() > 0) {
+            btnComenzar.setEnabled(true);
+            btnTblJug.setEnabled(true);
+        }
+    }
 }

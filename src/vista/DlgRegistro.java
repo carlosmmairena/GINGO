@@ -62,60 +62,81 @@ public class DlgRegistro extends javax.swing.JDialog {
         btnLimpiar = new javax.swing.JButton();
         txtTelefono = new javax.swing.JTextField();
         lblTelefono = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registrar jugador");
 
-        pnlBase.setBackground(new java.awt.Color(204, 255, 255));
+        pnlBase.setBackground(new java.awt.Color(184, 186, 253));
         pnlBase.setMinimumSize(new java.awt.Dimension(520, 503));
         pnlBase.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        lblCedula.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblCedula.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCedula.setText("Cédula:");
-        pnlBase.add(lblCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 103, 40));
+        pnlBase.add(lblCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 103, 40));
 
+        lblNombre.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblNombre.setText("Nombre:");
-        pnlBase.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 103, 44));
+        pnlBase.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 103, 44));
 
+        lblDireccion.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblDireccion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblDireccion.setText("Dirección:");
         pnlBase.add(lblDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 103, 44));
 
+        lblMonto.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblMonto.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblMonto.setText("Monto Inicial:");
         pnlBase.add(lblMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 103, 44));
 
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreKeyTyped(evt);
             }
         });
-        pnlBase.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 306, -1));
+        pnlBase.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 300, 30));
 
         txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCedulaKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCedulaKeyTyped(evt);
             }
         });
-        pnlBase.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 306, -1));
+        pnlBase.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 300, 30));
 
         txtMontoI.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtMontoIKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtMontoIKeyTyped(evt);
             }
         });
-        pnlBase.add(txtMontoI, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 147, -1));
+        pnlBase.add(txtMontoI, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 147, 30));
 
+        cmbCarton.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         cmbCarton.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar cartón", "Cartón N° 1", "Cartón N° 2", "Cartón N° 3", "Cartón N° 4", "Cartón N° 5", "Cartón N° 6" }));
-        pnlBase.add(cmbCarton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, 147, -1));
+        pnlBase.add(cmbCarton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, 150, 30));
 
         txtDireccion.setColumns(20);
         txtDireccion.setRows(5);
+        txtDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDireccionKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(txtDireccion);
 
-        pnlBase.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 306, -1));
+        pnlBase.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 300, -1));
 
+        btnCancelar.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -123,8 +144,9 @@ public class DlgRegistro extends javax.swing.JDialog {
                 btnCancelarActionPerformed(evt);
             }
         });
-        pnlBase.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 360, 117, 40));
+        pnlBase.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 380, 117, 40));
 
+        btnGuardar.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/guardar.png"))); // NOI18N
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -132,8 +154,9 @@ public class DlgRegistro extends javax.swing.JDialog {
                 btnGuardarActionPerformed(evt);
             }
         });
-        pnlBase.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 360, 120, 40));
+        pnlBase.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 380, 120, 40));
 
+        btnLimpiar.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/limpiar.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -141,18 +164,28 @@ public class DlgRegistro extends javax.swing.JDialog {
                 btnLimpiarActionPerformed(evt);
             }
         });
-        pnlBase.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 360, 120, 40));
+        pnlBase.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 380, 120, 40));
 
         txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtTelefonoKeyTyped(evt);
             }
         });
-        pnlBase.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 306, -1));
+        pnlBase.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 300, 30));
 
+        lblTelefono.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblTelefono.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTelefono.setText("Teléfono:");
-        pnlBase.add(lblTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 103, 23));
+        pnlBase.add(lblTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 103, 30));
+
+        jLabel1.setBackground(new java.awt.Color(132, 136, 255));
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Formulario de registro");
+        pnlBase.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -251,6 +284,26 @@ public class DlgRegistro extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_txtTelefonoKeyTyped
 
+    private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
+        txtNombre.setBackground(Color.WHITE);
+    }//GEN-LAST:event_txtNombreKeyReleased
+
+    private void txtCedulaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyReleased
+        txtCedula.setBackground(Color.WHITE);
+    }//GEN-LAST:event_txtCedulaKeyReleased
+
+    private void txtTelefonoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyReleased
+        txtTelefono.setBackground(Color.WHITE);
+    }//GEN-LAST:event_txtTelefonoKeyReleased
+
+    private void txtMontoIKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMontoIKeyReleased
+        txtMontoI.setBackground(Color.WHITE);
+    }//GEN-LAST:event_txtMontoIKeyReleased
+
+    private void txtDireccionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyReleased
+        txtDireccion.setBackground(Color.WHITE);
+    }//GEN-LAST:event_txtDireccionKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -298,6 +351,7 @@ public class DlgRegistro extends javax.swing.JDialog {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JComboBox<String> cmbCarton;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblDireccion;

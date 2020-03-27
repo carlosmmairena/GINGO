@@ -18,7 +18,7 @@ public class Jugador {
     private int montoIni;
     private int premio;
     private byte numCarton;
-    private byte cantidadVec;
+    private int cantidadVec;
 
     public Jugador() {
         this.cedula = 0;
@@ -108,29 +108,40 @@ public class Jugador {
     }
 
     /**
-     * Inserta un número en cada posición, si se repite lo elimina
-     *
-     * @param num
-     * @return True en si se agrega
+     * Inserta un número en cada posición, si se repite lo eliminamos
+     * @param num Número obtenido desde la celda seleccionada
      */
-    public boolean agregaNumero(byte num) {
+    public void agregaNumero(byte num) {
 
         boolean agregado = true;
-
-        for (int i = 0; i < numSelec.length; i++) {
+        int pos = 0;
+        for (int i = 0; i < cantidadVec; i++) {
 
             if (num == numSelec[i]) {
+                pos = i;
                 agregado = false;
                 break;
             }
         }
-
         if (agregado) {
             numSelec[cantidadVec] = num;
             cantidadVec++;
+        } else {
+            this.reordenar(pos);
+            cantidadVec--;
+            System.out.println("Cantidad de números: " + cantidadVec);
         }
-        
-        return agregado;
+    }
 
+    /**
+     * Nos movemos los números que están delante para dejar libre la última posición
+     * @param i 
+     */
+    private void reordenar(int i) {
+        
+        for (int j = i; j < (cantidadVec-1); j++) {
+            numSelec[j] = numSelec[j + 1];
+            numSelec[j + 1] = 0;
+        }
     }
 }

@@ -83,9 +83,9 @@
                           </Group>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="btnTblJug" min="-2" pref="210" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="353" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="355" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="jPanel2" max="32767" attributes="0"/>
@@ -118,9 +118,9 @@
                                   <Component id="pnlCart6" min="-2" pref="280" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btnTblJug" min="-2" pref="50" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="24" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -485,6 +485,9 @@
                 <Property name="text" type="java.lang.String" value="Comenzar Juego"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnComenzarActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnNueBol">
               <Properties>
@@ -494,6 +497,9 @@
                 <Property name="text" type="java.lang.String" value="Nueva Bolita"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNueBolActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtBolita">
               <Properties>
@@ -524,11 +530,6 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="lblNumJug" min="-2" pref="214" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
@@ -537,10 +538,7 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane7" min="-2" pref="251" max="-2" attributes="0"/>
-                                  <Component id="lblNumJug1" min="-2" pref="214" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="jScrollPane7" min="-2" pref="251" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="32" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -558,6 +556,19 @@
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="lblNumJug" min="-2" pref="214" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="lblNumJug1" min="-2" pref="214" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -571,7 +582,7 @@
                       <Component id="lblNumJug1" min="-2" pref="31" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane8" min="-2" pref="171" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="66" max="32767" attributes="0"/>
                       <Component id="lblTotal" min="-2" pref="25" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="txtTotal" min="-2" pref="71" max="-2" attributes="0"/>
@@ -632,16 +643,13 @@
                     <Property name="rowHeight" type="int" value="25"/>
                     <Property name="rowSelectionAllowed" type="boolean" value="false"/>
                     <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="cc" type="rgb"/>
+                      <Color blue="fd" green="ba" red="b8" type="rgb"/>
                     </Property>
                     <Property name="showGrid" type="boolean" value="true"/>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblNumJugMouseClicked"/>
-                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -737,7 +745,7 @@
                     </Property>
                     <Property name="rowHeight" type="int" value="20"/>
                     <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="cc" type="rgb"/>
+                      <Color blue="fd" green="ba" red="b8" type="rgb"/>
                     </Property>
                     <Property name="selectionMode" type="int" value="0"/>
                     <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
@@ -748,9 +756,6 @@
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblResumMouseClicked"/>
-                  </Events>
                 </Component>
               </SubComponents>
             </Container>

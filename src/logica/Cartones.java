@@ -28,10 +28,8 @@ public class Cartones extends Thread {
     public Cartones() {
         this.numCarton = 0;
         this.estado = "Disponible";
-        //this.apuesta = 0;
         this.jugador = new Jugador();
         this.carton = new JTable(8, 10);
-        //this.aciertosJu = 0;
         this.grafica = new FrmPrincipal();
     }
 
@@ -39,10 +37,8 @@ public class Cartones extends Thread {
 
         this.numCarton = numCarton;
         this.estado = estado;
-        //this.apuesta = 5;
         this.jugador = jugador;
         this.carton = carton;
-        //this.aciertosJu = 0;
         this.grafica = grafica;
     }
 

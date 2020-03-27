@@ -33,7 +33,7 @@ public class Jugador {
         this.numCarton = 0;
         this.cantidadVec = 0;
         this.aciertosJu = 0;
-        this.apuesta = 0;
+        this.apuesta = 5;
     }
 
     public Jugador(int cedula, String nombre, String direccion, int telefono, byte numCarton, int montoIni, int premio) {
@@ -46,7 +46,7 @@ public class Jugador {
         this.premio = premio;
         this.numCarton = numCarton;
         this.aciertosJu = 0;
-        this.apuesta = 0;
+        this.apuesta = 5;
     }
 
     public byte getApuesta() {

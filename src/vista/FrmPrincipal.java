@@ -4,12 +4,9 @@
 package vista;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import logica.Banca;
 import logica.Cartones;
 import logica.Jugador;
@@ -33,24 +30,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
         initComponents();
         this.jugador = new Jugador();
         this.numCarton = "";
-        this.banca = new Banca();
-
-        //Obtnemos la resolución de pantalla
-        Dimension tamanioPan = Toolkit.getDefaultToolkit().getScreenSize();
-
-        this.setSize(tamanioPan);
         this.setExtendedState(MAXIMIZED_BOTH);
 
         this.carTri = new byte[6][8][10];
         this.hilos = new ArrayList();
         this.arregloJugad = new ArrayList();
-        tblCart1.setBackground(Color.WHITE);
-        tblCart1.setForeground(Color.BLACK);
-        tblCart2.setBackground(Color.WHITE);
-        tblCart3.setBackground(Color.WHITE);
-        tblCart4.setBackground(Color.WHITE);
-        tblCart5.setBackground(Color.WHITE);
-        tblCart6.setBackground(Color.WHITE);
+        this.banca = new Banca();
     }
 
     @SuppressWarnings("unchecked")
@@ -167,10 +152,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         lblApuesta6 = new javax.swing.JLabel();
         txtApuesta6 = new javax.swing.JTextField();
-        mnbMenu = new javax.swing.JMenuBar();
-        mnJugarG = new javax.swing.JMenu();
-        mnAyuda = new javax.swing.JMenu();
-        mnArchi = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Casino Looky - Gingo");
@@ -246,7 +227,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         lblApuesta1.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         lblApuesta1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblApuesta1.setText("Apuesta:");
+        lblApuesta1.setText("Apuesta $");
         pnlCart1.add(lblApuesta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, -1, 23));
 
         txtApuesta1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -255,6 +236,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnCambiar1.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         btnCambiar1.setText("Cambiar");
         btnCambiar1.setEnabled(false);
+        btnCambiar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCambiar1ActionPerformed(evt);
+            }
+        });
         pnlCart1.add(btnCambiar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, -1, -1));
 
         btnDatos1.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
@@ -329,6 +315,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         txtBolita.setEditable(false);
         txtBolita.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Bolita N°:");
 
@@ -348,12 +335,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnComenzar, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtBolita, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnNueBol, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
+                .addComponent(btnNueBol, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         pnlEncaLayout.setVerticalGroup(
             pnlEncaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -492,7 +479,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addComponent(lblNumJug1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                 .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -569,11 +556,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnCambiar2.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         btnCambiar2.setText("Cambiar");
         btnCambiar2.setEnabled(false);
+        btnCambiar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCambiar2ActionPerformed(evt);
+            }
+        });
         pnlCart2.add(btnCambiar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, -1, -1));
 
         lblApuesta2.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         lblApuesta2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblApuesta2.setText("Apuesta:");
+        lblApuesta2.setText("Apuesta $");
         pnlCart2.add(lblApuesta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, -1, 23));
 
         txtApuesta2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -660,7 +652,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         lblApuesta4.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         lblApuesta4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblApuesta4.setText("Apuesta:");
+        lblApuesta4.setText("Apuesta $");
         pnlCart4.add(lblApuesta4, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 215, -1, 23));
 
         txtApuesta4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -669,6 +661,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnCambiar4.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         btnCambiar4.setText("Cambiar");
         btnCambiar4.setEnabled(false);
+        btnCambiar4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCambiar4ActionPerformed(evt);
+            }
+        });
         pnlCart4.add(btnCambiar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 247, -1, -1));
 
         pnlCart5.setBackground(new java.awt.Color(184, 186, 253));
@@ -746,7 +743,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         lblApuesta5.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         lblApuesta5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblApuesta5.setText("Apuesta:");
+        lblApuesta5.setText("Apuesta $");
         pnlCart5.add(lblApuesta5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, -1, 23));
 
         txtApuesta5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -755,6 +752,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnCambiar5.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         btnCambiar5.setText("Cambiar");
         btnCambiar5.setEnabled(false);
+        btnCambiar5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCambiar5ActionPerformed(evt);
+            }
+        });
         pnlCart5.add(btnCambiar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, -1, -1));
 
         pnlCart3.setBackground(new java.awt.Color(184, 186, 253));
@@ -822,7 +824,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         lblApuesta3.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         lblApuesta3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblApuesta3.setText("Apuesta:");
+        lblApuesta3.setText("Apuesta $");
         pnlCart3.add(lblApuesta3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, -1, 23));
 
         txtApuesta3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -831,6 +833,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnCambiar3.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         btnCambiar3.setText("Cambiar");
         btnCambiar3.setEnabled(false);
+        btnCambiar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCambiar3ActionPerformed(evt);
+            }
+        });
         pnlCart3.add(btnCambiar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, -1, -1));
 
         btnDatos3.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
@@ -898,6 +905,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnCambiar6.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         btnCambiar6.setText("Cambiar");
         btnCambiar6.setEnabled(false);
+        btnCambiar6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCambiar6ActionPerformed(evt);
+            }
+        });
         pnlCart6.add(btnCambiar6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, -1, -1));
 
         btnDatos6.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
@@ -923,7 +935,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         lblApuesta6.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         lblApuesta6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblApuesta6.setText("Apuesta:");
+        lblApuesta6.setText("Apuesta $");
         pnlCart6.add(lblApuesta6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, -1, 23));
 
         txtApuesta6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -979,17 +991,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         );
 
         getContentPane().add(pnlBase);
-
-        mnJugarG.setText("Jugar Gingo");
-        mnbMenu.add(mnJugarG);
-
-        mnAyuda.setText("Ayuda");
-        mnbMenu.add(mnAyuda);
-
-        mnArchi.setText("Archivo");
-        mnbMenu.add(mnArchi);
-
-        setJMenuBar(mnbMenu);
 
         pack();
         setLocationRelativeTo(null);
@@ -1159,6 +1160,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
             this.actuaTblBolitas();
         } catch (ArrayIndexOutOfBoundsException es) { // Termina el juego
             this.resumenTabla();
+            btnNueBol.setEnabled(false);
+            btnNuevJueg.setEnabled(true);
             JOptionPane.showMessageDialog(this, "Ya ha alcanzado el total de números jugados");
         }
     }//GEN-LAST:event_btnNueBolActionPerformed
@@ -1168,24 +1171,137 @@ public class FrmPrincipal extends javax.swing.JFrame {
         int opc = JOptionPane.showConfirmDialog(this, "¿Desea iniciar el juego?", "Iniciar Juego", JOptionPane.YES_NO_OPTION);
 
         if (opc == JOptionPane.YES_OPTION) {
+            this.btnAsigCart.setEnabled(false);
+            btnComenzar.setEnabled(false);
             this.iniciarJuego();
         }
 
     }//GEN-LAST:event_btnComenzarActionPerformed
 
     /**
-     * Se llama cuando se arranca el juego
+     * Reiniciamos el juego
      */
-    private void iniciarJuego() {
+    private void reiniciarJuego() {
 
-        System.out.println("Inciamos los hilos que se generaron y están el vector");
+        for (int in = 0; in < arregloJugad.size(); in++) {
 
-        for (int i = 0; i < hilos.size(); i++) {
-            hilos.get(i).start();
+            arregloJugad.get(in).setPremio(0);
+            arregloJugad.get(in).setAciertosJu(Byte.parseByte("0"));
         }
-        this.btnNueBol.setEnabled(true);
+        tblResum.removeAll();
 
     }
+
+    private void btnCambiar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiar1ActionPerformed
+
+        if (cambiarApuesta(Byte.parseByte(txtApuesta1.getText()))) {
+            for (int i = 0; i < arregloJugad.size(); i++) {
+
+                if ((arregloJugad.get(i).getNumCarton() == 1)) {
+
+                    arregloJugad.get(i).setApuesta(Byte.parseByte(txtApuesta1.getText()));
+                    break;
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "La apuesta digitada no es la permitida.\n"
+                    + "Apuestas permitidas:\n"
+                    + "$5, $10, $20, $30");
+        }
+
+    }//GEN-LAST:event_btnCambiar1ActionPerformed
+
+    private void btnCambiar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiar2ActionPerformed
+
+        if (cambiarApuesta(Byte.parseByte(txtApuesta2.getText()))) {
+            for (int i = 0; i < arregloJugad.size(); i++) {
+
+                if ((arregloJugad.get(i).getNumCarton() == 1)) {
+
+                    arregloJugad.get(i).setApuesta(Byte.parseByte(txtApuesta2.getText()));
+                    break;
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "La apuesta digitada no es la permitida.\n"
+                    + "Apuestas permitidas:\n"
+                    + "$5, $10, $20, $30");
+        }
+
+    }//GEN-LAST:event_btnCambiar2ActionPerformed
+
+    private void btnCambiar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiar3ActionPerformed
+
+        if (cambiarApuesta(Byte.parseByte(txtApuesta3.getText()))) {
+            for (int i = 0; i < arregloJugad.size(); i++) {
+
+                if ((arregloJugad.get(i).getNumCarton() == 1)) {
+
+                    arregloJugad.get(i).setApuesta(Byte.parseByte(txtApuesta3.getText()));
+                    break;
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "La apuesta digitada no es la permitida.\n"
+                    + "Apuestas permitidas:\n"
+                    + "$5, $10, $20, $30");
+        }
+    }//GEN-LAST:event_btnCambiar3ActionPerformed
+
+    private void btnCambiar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiar4ActionPerformed
+
+        if (cambiarApuesta(Byte.parseByte(txtApuesta4.getText()))) {
+            for (int i = 0; i < arregloJugad.size(); i++) {
+
+                if ((arregloJugad.get(i).getNumCarton() == 1)) {
+
+                    arregloJugad.get(i).setApuesta(Byte.parseByte(txtApuesta4.getText()));
+                    break;
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "La apuesta digitada no es la permitida.\n"
+                    + "Apuestas permitidas:\n"
+                    + "$5, $10, $20, $30");
+        }
+
+    }//GEN-LAST:event_btnCambiar4ActionPerformed
+
+    private void btnCambiar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiar5ActionPerformed
+
+        if (cambiarApuesta(Byte.parseByte(txtApuesta5.getText()))) {
+            for (int i = 0; i < arregloJugad.size(); i++) {
+
+                if ((arregloJugad.get(i).getNumCarton() == 1)) {
+
+                    arregloJugad.get(i).setApuesta(Byte.parseByte(txtApuesta5.getText()));
+                    break;
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "La apuesta digitada no es la permitida.\n"
+                    + "Apuestas permitidas:\n"
+                    + "$5, $10, $20, $30");
+        }
+    }//GEN-LAST:event_btnCambiar5ActionPerformed
+
+    private void btnCambiar6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiar6ActionPerformed
+
+        if (cambiarApuesta(Byte.parseByte(txtApuesta6.getText()))) {
+            for (int i = 0; i < arregloJugad.size(); i++) {
+
+                if ((arregloJugad.get(i).getNumCarton() == 1)) {
+
+                    arregloJugad.get(i).setApuesta(Byte.parseByte(txtApuesta6.getText()));
+                    break;
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "La apuesta digitada no es la permitida.\n"
+                    + "Apuestas permitidas:\n"
+                    + "$5, $10, $20, $30");
+        }
+    }//GEN-LAST:event_btnCambiar6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1204,13 +1320,17 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmPrincipal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmPrincipal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmPrincipal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmPrincipal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -1274,10 +1394,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblnumCarton4;
     private javax.swing.JLabel lblnumCarton5;
     private javax.swing.JLabel lblnumCarton6;
-    private javax.swing.JMenu mnArchi;
-    private javax.swing.JMenu mnAyuda;
-    private javax.swing.JMenu mnJugarG;
-    private javax.swing.JMenuBar mnbMenu;
     private javax.swing.JPanel pnlBase;
     private javax.swing.JPanel pnlCart1;
     private javax.swing.JPanel pnlCart2;
@@ -1311,6 +1427,37 @@ public class FrmPrincipal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     /**
+     * Se llama cuando se arranca el juego
+     */
+    private void iniciarJuego() {
+
+        System.out.println("Inciamos los hilos que se generaron y están el vector");
+
+        for (int i = 0; i < hilos.size(); i++) {
+            hilos.get(i).start();
+        }
+        this.btnNueBol.setEnabled(true);
+
+    }
+
+    /**
+     * Verifica que la apuesta está correcta
+     *
+     * @param apuesta
+     * @return
+     */
+    private boolean cambiarApuesta(Byte apuesta) {
+        boolean exito = true;
+
+        if ((apuesta != 5) && (apuesta != 10) && (apuesta != 15)
+                && (apuesta != 20) && (apuesta != 30)) {
+            exito = false;
+        }
+
+        return exito;
+    }
+
+    /**
      * Actualiza la tabla de las bolitas que van surgiendo
      *
      * @param num
@@ -1320,9 +1467,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         int bol = this.banca.producirBolita();
         System.out.println("Bolita generada: " + bol);
         txtBolita.setText(bol + "");
-        
+
         this.notifyAll();
-        
+
         byte posi = 0;
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 2; j++) {
@@ -1369,10 +1516,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 this.hilos.trimToSize();
                 arregloJugad.add(jugador);
                 arregloJugad.trimToSize();
+                this.banca.setArrayJug(arregloJugad);
 
                 this.jugador = new Jugador();
                 btnDatos1.setEnabled(true);
                 btnAsigCart.setEnabled(true);
+                btnCambiar1.setEnabled(true);
                 this.verificaLisJuga();
             }
 
@@ -1416,10 +1565,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 this.hilos.trimToSize();
                 arregloJugad.add(jugador);
                 arregloJugad.trimToSize();
+                this.banca.setArrayJug(arregloJugad);
 
                 this.jugador = new Jugador();
                 btnDatos2.setEnabled(true);
                 btnAsigCart.setEnabled(true);
+                btnCambiar2.setEnabled(true);
                 this.verificaLisJuga();
             }
         }
@@ -1461,9 +1612,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 this.hilos.trimToSize();
                 arregloJugad.add(jugador);
                 arregloJugad.trimToSize();
+                this.banca.setArrayJug(arregloJugad);
 
                 this.jugador = new Jugador();
                 btnDatos3.setEnabled(true);
+                btnCambiar3.setEnabled(true);
                 btnAsigCart.setEnabled(true);
                 this.verificaLisJuga();
             }
@@ -1506,10 +1659,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 this.hilos.trimToSize();
                 arregloJugad.add(jugador);
                 arregloJugad.trimToSize();
+                this.banca.setArrayJug(arregloJugad);
 
                 this.jugador = new Jugador();
                 btnDatos4.setEnabled(true);
                 btnAsigCart.setEnabled(true);
+                btnCambiar4.setEnabled(true);
                 this.verificaLisJuga();
             }
         }
@@ -1551,33 +1706,17 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 this.hilos.trimToSize();
                 arregloJugad.add(jugador);
                 arregloJugad.trimToSize();
+                this.banca.setArrayJug(arregloJugad);
 
                 this.jugador = new Jugador();
                 btnDatos5.setEnabled(true);
                 btnAsigCart.setEnabled(true);
+                btnCambiar5.setEnabled(true);
                 this.verificaLisJuga();
             }
         }
     }
 
-    /**
-     * Muestra el resumen de la tabla
-     */
-    private void resumenTabla(){
-        
-        DefaultTableModel modelo = (DefaultTableModel) (tblResum.getModel());
-        
-        for (int i = 0; i < arregloJugad.size(); i++) {
-            
-            Object datos[] = {arregloJugad.get(i).getNumCarton(),arregloJugad.get(i).getNombre(),
-            arregloJugad.get(i).getAciertosJu(), arregloJugad.get(i).getApuesta(), arregloJugad.get(i).getPremio()};
-            
-            modelo.addRow(datos);
-        }
-        
-        tblResum.setModel(modelo);
-    }
-    
     /**
      * Se utiliza para que el usuario que seleccionó el cartón 6 pueda
      * seleccionar sus números
@@ -1614,9 +1753,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 this.hilos.trimToSize();
                 arregloJugad.add(jugador);
                 arregloJugad.trimToSize();
+                this.banca.setArrayJug(arregloJugad);
 
                 this.jugador = new Jugador();
                 btnDatos6.setEnabled(true);
+                btnCambiar6.setEnabled(true);
                 btnAsigCart.setEnabled(true);
                 this.verificaLisJuga();
             }
@@ -1624,19 +1765,44 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }
 
     /**
+     * Muestra el resumen de la tabla cuando el juego termina
+     */
+    private void resumenTabla() {
+
+        this.banca.calcularPremios();
+
+        System.out.println("Se calcularon los premios");
+        DefaultTableModel modelo = (DefaultTableModel) (tblResum.getModel());
+
+        for (int i = 0; i < arregloJugad.size(); i++) {
+
+            Object datos[] = {arregloJugad.get(i).getNumCarton(), arregloJugad.get(i).getNombre(),
+                arregloJugad.get(i).getAciertosJu(), "$" + arregloJugad.get(i).getApuesta(), "$" + arregloJugad.get(i).getPremio()};
+
+            modelo.addRow(datos);
+        }
+        tblResum.setModel(modelo);
+        txtTotal.setText("$" + banca.getTotalBanca()); // Actualizamos el valor de la banca
+    }
+
+    /**
      * Se llama para asignar un jugador registrado al cartón
      */
     private void asignarJugador() {
 
-        DlgRegistro registrar = new DlgRegistro(this, true, cartonesDisponibles(),cedulasRegistradas());
-        registrar.setVisible(true);
+        if (arregloJugad.size() < 6) {
+            DlgRegistro registrar = new DlgRegistro(this, true, cartonesDisponibles(), cedulasRegistradas());
+            registrar.setVisible(true);
 
-        // Si ha seleccionado guardar el registro
-        if (registrar.isGuardado()) {
-            this.numCarton = registrar.getCmbCarton().getSelectedItem().toString();
-            this.jugador = registrar.getJugador();
-            this.seleCarton();
-            this.btnAsigCart.setEnabled(false); // Se desactiva para que no registren otro jugador sin terminar este
+            // Si ha seleccionado guardar el registro
+            if (registrar.isGuardado()) {
+                this.numCarton = registrar.getCmbCarton().getSelectedItem().toString();
+                this.jugador = registrar.getJugador();
+                this.seleCarton();
+                this.btnAsigCart.setEnabled(false); // Se desactiva para que no registren otro jugador sin terminar este
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Ya se han alcanzado el máximo de jugadores");
         }
     }
 
@@ -1697,14 +1863,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
         ArrayList<String> cedulas = new ArrayList();
 
         for (int i = 0; i < arregloJugad.size(); i++) {
-            
-                cedulas.add(arregloJugad.get(i).getCedula()+"");
-            
+
+            cedulas.add(arregloJugad.get(i).getCedula() + "");
+
         }
         cedulas.trimToSize();
         return cedulas;
     }
-    
+
     /**
      * Revisa los cartones disponibles y los retorna en un arreglo de string
      *
@@ -1722,7 +1888,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         cartones.trimToSize();
         return cartones;
     }
-    
+
     /**
      * Rellena la matriz tridimensional, generando cada número aleatoriamente
      */
@@ -1787,6 +1953,35 @@ public class FrmPrincipal extends javax.swing.JFrame {
      */
     private void nuevoJuego() {
 
+        this.carTri = new byte[6][8][10];
+        this.carTri = new byte[6][8][10];
+        
+        CeldaCustom limpia = new CeldaCustom();
+
+        for (int k = 0; k < 10; k++) {
+            tblCart1.getColumnModel().getColumn(k).setCellRenderer(limpia);
+            tblCart2.getColumnModel().getColumn(k).setCellRenderer(limpia);
+            tblCart3.getColumnModel().getColumn(k).setCellRenderer(limpia);
+            tblCart4.getColumnModel().getColumn(k).setCellRenderer(limpia);
+            tblCart5.getColumnModel().getColumn(k).setCellRenderer(limpia);
+            tblCart6.getColumnModel().getColumn(k).setCellRenderer(limpia);
+        }
+        
+
+        for (int k = 0; k < 10; k++) {
+            tblCart1.getColumnModel().getColumn(k).setCellRenderer(limpia);
+            tblCart2.getColumnModel().getColumn(k).setCellRenderer(limpia);
+            tblCart3.getColumnModel().getColumn(k).setCellRenderer(limpia);
+            tblCart4.getColumnModel().getColumn(k).setCellRenderer(limpia);
+            tblCart5.getColumnModel().getColumn(k).setCellRenderer(limpia);
+            tblCart6.getColumnModel().getColumn(k).setCellRenderer(limpia);
+        }
+        
+        // Eliminiamos todos los hilos
+        for (int in = 0; in < arregloJugad.size(); in++) {
+            arregloJugad.remove(in);
+            hilos.remove(in);
+        }
         banca = new Banca();
         this.llenarCampos();
         btnNuevJueg.setEnabled(false);
@@ -1812,12 +2007,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
         txtEstado5.setText("Disponible");
         txtEstado6.setText("Disponible");
 
-        txtApuesta1.setText("$5");
-        txtApuesta2.setText("$5");
-        txtApuesta3.setText("$5");
-        txtApuesta4.setText("$5");
-        txtApuesta5.setText("$5");
-        txtApuesta6.setText("$5");
+        txtApuesta1.setText("5");
+        txtApuesta2.setText("5");
+        txtApuesta3.setText("5");
+        txtApuesta4.setText("5");
+        txtApuesta5.setText("5");
+        txtApuesta6.setText("5");
 
         txtTotal.setText("$" + banca.getTotalBanca());
     }
@@ -1838,10 +2033,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
      * @return
      */
     public javax.swing.JTextField getTxtBolita() {
-        
+
         return txtBolita;
     }
-    
+
     public Banca getBanca() {
         return banca;
     }

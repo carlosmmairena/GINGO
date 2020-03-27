@@ -18,6 +18,14 @@ public class CeldaCustom extends DefaultTableCellRenderer {
     private byte numSelec[];
 
     /**
+     * Constructor por defecto
+     */
+    public CeldaCustom() {
+        this.num = 1;
+        this.numSelec = new byte[0];
+    }
+
+    /**
      * Recibe el vector que contiene los números...
      *
      * @param num
@@ -39,7 +47,7 @@ public class CeldaCustom extends DefaultTableCellRenderer {
 
         if ((v == num) && (revisarValor(v))) { // Número nuevo para agregar
 
-            this.setBackground(Color.RED);
+            this.setBackground(Color.ORANGE);
             this.setForeground(Color.BLACK);
             //System.out.println("Número nuevo para agregar");
 
@@ -51,7 +59,7 @@ public class CeldaCustom extends DefaultTableCellRenderer {
 
         } else if (revisarValor(v)) { // Ya existe, no lo desmarca
 
-            this.setBackground(Color.RED);
+            this.setBackground(Color.ORANGE);
             this.setForeground(Color.BLACK);
             //System.out.println("Ya existe, no lo desmarca");
         } else { // Si no está seleccionado
@@ -61,7 +69,6 @@ public class CeldaCustom extends DefaultTableCellRenderer {
         }
         return this;
     }
-
 
     private boolean revisarValor(byte v) {
         boolean existe = false;
